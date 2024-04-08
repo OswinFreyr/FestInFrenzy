@@ -1,10 +1,10 @@
 <script setup>
-  import TestComponent from '@/components/TestComponent.vue';
+
 </script>
 
 <template>
   <div>
-    
+    <TestComponent />
     <NuxtWelcome />
   </div>
 </template>
