@@ -64,4 +64,10 @@ async function deleteDiscipline(id) {
 
 }
 
-module.exports = { createDiscipline, getAllDisciplines, getDisciplineById }
+async function createAllDisciplines(disciplines) {
+    disciplines.forEach(async discipline => {
+        return await Discipline.create(discipline);
+    })
+}
+
+module.exports = { createDiscipline, getAllDisciplines, getDisciplineById, createAllDisciplines }

@@ -97,8 +97,6 @@ async function addLocalisationToFestival (req, res){
     }
 }
 
-
-
 async function createAllFestivals(req, res) {
     try {
         const festivals = await festivalService.createAllFestivals(req.body);

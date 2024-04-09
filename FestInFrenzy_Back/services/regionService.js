@@ -64,4 +64,10 @@ async function deleteRegion(id) {
 
 }
 
-module.exports = { createRegion, getAllRegions, getRegionById }
+async function createAllRegions(regions) {
+    regions.forEach(async region=> {
+        return await Region.create(region);
+    })
+}
+
+module.exports = { createRegion, getAllRegions, getRegionById, addFestivalToRegion, createAllRegions }

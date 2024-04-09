@@ -8,7 +8,7 @@ async function createCommune(req, res) {
     catch (err) {
         res.status(500).json({message: err.message})
     }
-}
+};
 
 async function getAllCommune(req, res) {
     try{
@@ -48,4 +48,14 @@ async function addFestivalToCommune (req, res){
     }
 };
 
-module.exports = { createCommune, getAllCommune, getCommuneById, addFestivalToCommune }
+async function createAllCommunes(req, res) {
+    try {
+        const communes = await communeService.createAllCommunes(req.body);
+        res.json(communes);
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+};
+
+module.exports = { createCommune, getAllCommune, getCommuneById, addFestivalToCommune, createAllCommunes }

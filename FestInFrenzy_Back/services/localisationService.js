@@ -67,4 +67,10 @@ async function deleteLocalisation(id) {
 
 }
 
-module.exports = { createLocalisation, getAllLocalisations, getLocalisationById }
+async function createAllLocalisations(localisations) {
+    localisations.forEach(async localisation=> {
+        return await Localisation.create(localisation);
+    })
+}
+
+module.exports = { createLocalisation, getAllLocalisations, getLocalisationById, createAllLocalisation }

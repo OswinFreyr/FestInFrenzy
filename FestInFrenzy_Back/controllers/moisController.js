@@ -48,4 +48,14 @@ async function addFestivalToMois (req, res){
     }
 };
 
-module.exports = { createMois, getAllMois, getMoisById, addFestivalToMois }
+async function createAllMois(req, res) {
+    try {
+        const mois = await moisService.createAllMois(req.body);
+        res.json(mois);
+    }
+    catch (err) {
+        res.status(500).json({message: err.message})
+    }
+};
+
+module.exports = { createMois, getAllMois, getMoisById, addFestivalToMois, createAllMois }

@@ -64,4 +64,10 @@ async function deleteMois(id) {
 
 }
 
-module.exports = { createMois, getAllMois, getMoisById, addFestivalToMois }
+async function createAllMois(mois) {
+    mois.forEach(async mois_sing=> {
+        return await moiscreate(mois_sing);
+    })
+}
+
+module.exports = { createMois, getAllMois, getMoisById, addFestivalToMois, createAllMois }

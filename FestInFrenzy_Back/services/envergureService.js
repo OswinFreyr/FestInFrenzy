@@ -64,4 +64,10 @@ async function deleteEnvergure(id) {
 
 }
 
-module.exports = { createEnvergure, getAllEnvergures, getEnvergureById }
+async function createAllEnvergures(envergures) {
+    envergures.forEach(async envergure => {
+        return await Envergure.create(envergure);
+    })
+}
+
+module.exports = { createEnvergure, getAllEnvergures, getEnvergureById, createAllEnvergures }

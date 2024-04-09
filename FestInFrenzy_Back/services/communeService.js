@@ -67,4 +67,10 @@ async function deleteCommune(id) {
 
 }
 
+async function createAllCommunes(communes) {
+    communes.forEach(async commune => {
+        return await Commune.create(commune);
+    })
+}
+
 module.exports = { createCommune, getAllCommunes, getCommuneById }
