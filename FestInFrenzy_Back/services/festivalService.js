@@ -145,4 +145,39 @@ async function deleteFestival(id) {
 
 }
 
-module.exports = { createFestival, getAllFestivals, getFestivalById }
+async function createAllFestivals(festivals) {
+    try {
+
+        for (const festivalData of festivals) {
+            const festival = await Festival.create({
+                identifiant: festivalData.identifiant,
+                nom: festivalData.nom_du_festival,
+                site_internet: festivalData.site_internet_du_festival,
+                e_mail: festivalData.adresse_e_mail,
+                sous_categorie: festivalData.sous_categorie,
+                periode: festivalData.periode_mois
+            });
+
+            const region = await Region.findOrCreate({ where: { nom: festivalData.region_principale_de_deroulement } });
+            await festival.setRegion(region[0]);
+
+            const commune = await Commune.findOrCreate({ where: { nom: festivalData.commune_principale_de_deroulement } });
+            await festival.setCommune(commune[0]);
+
+            const discipline = await Discipline.findOrCreate({ where: { nom: festivalData.discipline_dominante } });
+            await festival.setDiscipline(discipline[0]);
+
+            const envergure = await Envergure.findOrCreate({ where: { nom: festivalData.envergure_territoriale } });
+            await festival.setEnvergure(envergure[0]);
+
+            const localisation = await Localisation.findOrCreate({ where: { geocodage_xy: festivalData.geocodage_xy } });
+            await festival.setLocalisation(localisation[0]);
+        }
+
+        console.log('Tous les festivals ont été créés avec succès.');
+    } catch (err) {
+        console.error('Erreur lors de la création des festivals :', err);
+    }
+}
+
+module.exports = { createFestival, getAllFestivals, getFestivalById, addRegionToFestival, addCommuneToFestival, addDisciplineToFestival, addEnvergureToFestival, addLocalisationToFestival, updateFestival, deleteFestival, createAllFestivals }
