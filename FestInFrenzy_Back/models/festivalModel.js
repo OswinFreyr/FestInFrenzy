@@ -6,19 +6,15 @@ const Festival = db.define("festival", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    nom_du_festival: {
+    nom: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    site_internet_du_festival: {
+    site_internet: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    adresse_e_mail: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    discipline_dominante: {
+    e_mail: {
         type: DataTypes.STRING,
         allowNull: false,
     },
