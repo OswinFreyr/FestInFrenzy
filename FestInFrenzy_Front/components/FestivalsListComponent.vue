@@ -3,16 +3,14 @@ import {defineProps} from 'vue'
 const props = defineProps({
   festivalsList: Array
 })
-// console.log("props component liste festivals")
-// console.log(props.festivalsList)
 </script>
 
 <template>
-    <div>
+    <div >
     <h1>Liste festivals</h1>
-    <ul>
-      <!-- Liste de liens ayant pour nom le nom du festival -->
-      <li v-for="festival in festivalsList" :key="festival.id">
+    <ul class="festivalsList" >
+
+      <li class="carousel" v-for="festival in festivalsList" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">{{
           festival.nom
         }}</NuxtLink>
@@ -21,3 +19,20 @@ const props = defineProps({
   </div>
 
 </template>
+
+<style>
+.festivalsList{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style: none;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+}
+.festivalsList > * {
+  display: inline-block;
+  width: 80%; 
+  scroll-snap-align: center;
+}
+</style>

@@ -25,6 +25,37 @@ onMounted(async () => {
 
 <template>
   <Header/>
-  <FestivalsList :festivalsList="festivalsList" />
+  <app class="app">
+    <section class="carroussel">
+      <FestivalsList :festivalsList="festivalsList" />
+    </section>
+    <section class="carroussel">
+      <FestivalsList :festivalsList="festivalsList" />
+    </section>
+    <section class="carroussel">
+      <FestivalsList :festivalsList="festivalsList" />
+    </section>
+    <section class="carroussel">
+      <FestivalsList :festivalsList="festivalsList" />
+    </section>
+    <section class="carroussel">
+      <FestivalsList :festivalsList="festivalsList" />
+    </section>
+    <section class="carroussel">
+      <FestivalsList :festivalsList="festivalsList" />
+    </section>
+  </app>
   <Footer/>
 </template>
+
+<style>
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  /* .carroussel {
+    display: flex;
+    flex-direction: row;
+  } */
+</style>

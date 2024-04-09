@@ -17,7 +17,7 @@ onMounted(async () => {
 <template>
   <div>
     <h1>{{ festival.nom }}</h1>
-    <ul>
+    <!-- <ul>
       <li>{{ festival.identifiant }}</li>
       <li>{{ festival.site_internet }}</li>
       <li>{{ festival.e_mail }}</li>
@@ -30,6 +30,6 @@ onMounted(async () => {
       <li>{{ festival.positions.latitude }}</li>
       <li>{{ festival.positions.longitude }}</li>
       <li>{{ festival.envergures.zone }}</li>
-    </ul>
+    </ul> -->
   </div>
 </template>
