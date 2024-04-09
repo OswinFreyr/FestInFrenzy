@@ -2,7 +2,7 @@ const { db } = require("./db");
 const { DataTypes } = require("sequelize")
 
 const Envergure = db.define('envergure', {
-    emplacement: {
+    zone: {
         type: DataTypes.STRING,
         allowNull: false,
     },
