@@ -1,5 +1,5 @@
 <script setup>
-import FestivalsList from '../components/FestivalListComponent.vue';
+import FestivalsList from '../components/FestivalsListComponent.vue';
 import Header from '../components/HeaderComponent.vue';
 import Footer from '../components/FooterComponent.vue';
 
@@ -8,8 +8,11 @@ import Footer from '../components/FooterComponent.vue';
 let festivalsList = ref([]);
 // Récupération des données via l'API
 onMounted(async () => {
-  const festivalsApi = await fetch('./datasProvisoires/festivals.json');
+  const festivalsApi = await fetch('/datasProvisoires/festivals.json');
   festivalsList.value = await festivalsApi.json();
+  festivalsList.value = festivalsList.value.festivals
+  // console.log("onMounted HomeView liste festivals: ")
+  // console.log(festivalsList.value);
 })
 
 // watch(festivalsList, async( )=>{

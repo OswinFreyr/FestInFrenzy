@@ -1,6 +1,6 @@
-[
+{ "festivals": [
     {
-        "nom_du_festival": "Avoine Zone Groove",
+        "nom": "Avoine Zone Groove",
         "envergure_territoriale": "Intercommunale",
         "region_principale_de_deroulement": "Centre-Val de Loire",
         "site_internet_du_festival": "www.avoinezonegroove.fr",
@@ -9,15 +9,16 @@
         "sous_categorie_musique": "Jazz, Blues",
         "sous_categorie_musique_cnm": "07- Musiques actuelles sans distinction",
         "periode_principale_de_deroulement_du_festival": "Saison (21 juin - 5 septembre)",
-        "id": "000001",
+        "id": "1",
         "periode_mois": [
             "Juin",
             "Juillet",
             "Août",
             "Septembre"
         ]
-    },{
-        "nom_du_festival": "fest 2",
+    },
+    {
+        "nom": "fest 2",
         "envergure_territoriale": "Intercommunale",
         "region_principale_de_deroulement": "Centre-Val de Loire",
         "site_internet_du_festival": "www.avoinezonegroove.fr",
@@ -26,7 +27,7 @@
         "sous_categorie_musique": "Jazz, Blues",
         "sous_categorie_musique_cnm": "07- Musiques actuelles sans distinction",
         "periode_principale_de_deroulement_du_festival": "Saison (21 juin - 5 septembre)",
-        "id": "000001",
+        "id": "2",
         "periode_mois": [
             "Juin",
             "Juillet",
@@ -34,4 +35,4 @@
             "Septembre"
         ]
     }
-]
+]}
