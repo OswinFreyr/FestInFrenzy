@@ -3,8 +3,6 @@
 </script>
 
 <template>
-  <div>
-    <TestComponent />
-    <NuxtWelcome />
-  </div>
+  <NuxtPage page-key="home"/>
 </template>
+
