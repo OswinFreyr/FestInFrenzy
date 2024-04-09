@@ -7,7 +7,7 @@ let festival = ref({});
 
 onMounted(async () => {
   const festivalId = route.params.id;
-
+  
   let festivalAPI = await fetch("/datasProvisoires/festivals.json");
   const festivals = (await festivalAPI.json()).festivals;
 

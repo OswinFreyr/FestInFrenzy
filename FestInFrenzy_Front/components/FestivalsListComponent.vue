@@ -11,11 +11,13 @@ const props = defineProps({
     <ul class="festivalsList" >
 
       <li class="carousel" v-for="festival in festivalsList" :key="festival.id">
-        <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">{{
-          festival.nom
-        }}</NuxtLink>
+        <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
+          <festivalCardComponent :festival="festival"/>
+      </NuxtLink>
       </li>
     </ul>
+    <button @click="previousFestival"><</button>
+    <button @click="nextFestival">></button>
   </div>
 
 </template>
@@ -26,13 +28,5 @@ const props = defineProps({
   flex-direction: row;
   justify-content: space-evenly;
   list-style: none;
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-snap-type: x mandatory;
-}
-.festivalsList > * {
-  display: inline-block;
-  width: 80%; 
-  scroll-snap-align: center;
 }
 </style>
