@@ -12,19 +12,15 @@ const Festival = db.define("festival", {
     },
     site_internet: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     e_mail: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     sous_categorie: {
         type: DataTypes.STRING,
-        allowNull: false,
-    },
-    periode: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
 }, {
 });

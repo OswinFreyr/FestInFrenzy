@@ -1,9 +1,4 @@
-const { Commune } = require('../models/associations.js');
-const { Discipline } = require('../models/associations.js');
-const { Envergure } = require('../models/associations.js');
-const { Festival } = require('../models/associations.js');
-const { Localisation } = require('../models/associations.js');
-const { Region } = require('../models/associations.js');
+const { Festival, Region, Commune, Discipline, Envergure, Localisation, Mois } = require('../models/associations.js');
 
 async function createFestival(festival) {
     return await Festival.create(festival);
@@ -34,6 +29,7 @@ async function getAllFestivals(criterias = {}) {
             model: Discipline,
             model: Envergure,
             model: Localisation,
+            model: Mois,
         }
     });
     if (festivals) {
@@ -52,6 +48,7 @@ async function getFestivalById(id) {
             model: Discipline,
             model: Envergure,
             model: Localisation,
+            model: Mois,
         }
     });
     if (festival) {
@@ -137,6 +134,24 @@ async function addLocalisationToFestival(idLocalisation, festivalId) {
     }
 }
 
+async function addMoisToFestival(idMois, festivalId) {
+    const festival = await Festival.findByPk(festivalId);
+    const tabIdMois = idMois.ids
+    tabIdMois.forEach(async moisId => {
+        const isMois = await Mois.findByPk(moisId)
+        if (isMois) {
+            // verifier si festival et Mois deja associés
+            const isFestivalMois = await Festival.findAll({ where: { id: festivalId }, include: { model: Mois, where: { id: moisId } } });
+            if (isFestivalMois.lenght > 0) {
+                return null;
+            }
+            else {
+                return festival.addMois(moisId);
+            }
+        }
+    })
+}
+
 async function updateFestival(id) {
 
 }
@@ -148,31 +163,36 @@ async function deleteFestival(id) {
 async function createAllFestivals(festivals) {
     try {
 
-        for (const festivalData of festivals) {
+        festivals.forEach(async festivalData => {
             const festival = await Festival.create({
                 identifiant: festivalData.identifiant,
                 nom: festivalData.nom_du_festival,
                 site_internet: festivalData.site_internet_du_festival,
                 e_mail: festivalData.adresse_e_mail,
                 sous_categorie: festivalData.sous_categorie,
-                periode: festivalData.periode_mois
             });
 
             const region = await Region.findOrCreate({ where: { nom: festivalData.region_principale_de_deroulement } });
-            await festival.setRegion(region[0]);
+            await festival.addRegion(region[0]);
 
             const commune = await Commune.findOrCreate({ where: { nom: festivalData.commune_principale_de_deroulement } });
-            await festival.setCommune(commune[0]);
+            await festival.addCommune(commune[0]);
 
             const discipline = await Discipline.findOrCreate({ where: { nom: festivalData.discipline_dominante } });
-            await festival.setDiscipline(discipline[0]);
+            await festival.addDiscipline(discipline[0]);
 
             const envergure = await Envergure.findOrCreate({ where: { nom: festivalData.envergure_territoriale } });
-            await festival.setEnvergure(envergure[0]);
+            await festival.addEnvergure(envergure[0]);
 
             const localisation = await Localisation.findOrCreate({ where: { geocodage_xy: festivalData.geocodage_xy } });
-            await festival.setLocalisation(localisation[0]);
-        }
+            await festival.addLocalisation(localisation[0]);
+
+            for (const moisData of festivalData.periode) {
+                const mois = await Mois.findOrCreate({ where: { nom: moisData } });
+                await festival.addMois(mois[0]);
+            }
+            
+        });
 
         console.log('Tous les festivals ont été créés avec succès.');
     } catch (err) {
@@ -180,4 +200,4 @@ async function createAllFestivals(festivals) {
     }
 }
 
-module.exports = { createFestival, getAllFestivals, getFestivalById, addRegionToFestival, addCommuneToFestival, addDisciplineToFestival, addEnvergureToFestival, addLocalisationToFestival, updateFestival, deleteFestival, createAllFestivals }
+module.exports = { createFestival, getAllFestivals, getFestivalById, addRegionToFestival, addCommuneToFestival, addDisciplineToFestival, addEnvergureToFestival, addLocalisationToFestival, addMoisToFestival, updateFestival, deleteFestival, createAllFestivals }
