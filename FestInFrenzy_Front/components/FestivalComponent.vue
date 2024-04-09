@@ -18,18 +18,18 @@ onMounted(async () => {
   <div>
     <h1>{{ festival.nom }}</h1>
     <ul>
-      <li>{{ festival.id }}</li>
-      <li>{{ festival.siteInternet }}</li>
-      <li>{{ festival.email }}</li>
-      <li>{{ festival.sousCategorie }}</li>
+      <li>{{ festival.identifiant }}</li>
+      <li>{{ festival.site_internet }}</li>
+      <li>{{ festival.e_mail }}</li>
+      <li>{{ festival.sous_categorie }}</li>
       <li>{{ festival.periode }}</li>
-      <li>{{ festival.nomRegion }}</li>
-      <li>{{ festival.nomCommune }}</li>
-      <li>{{ festival.postalCodeCommune }}</li>
-      <li>{{ festival.nomDiscipline }}</li>
-      <li>{{ festival.latitude }}</li>
-      <li>{{ festival.longitude }}</li>
-      <li>{{ festival.zone }}</li>
+      <li>{{ festival.regions.nom }}</li>
+      <li>{{ festival.communes.nom }}</li>
+      <li>{{ festival.communes.postal_code }}</li>
+      <li>{{ festival.disciplines.nom }}</li>
+      <li>{{ festival.positions.latitude }}</li>
+      <li>{{ festival.positions.longitude }}</li>
+      <li>{{ festival.envergures.zone }}</li>
     </ul>
   </div>
 </template>
