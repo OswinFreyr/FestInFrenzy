@@ -19,7 +19,6 @@ onMounted(async () => {
         <h2>Festivals du moment</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
-      <!-- <FestivalsList :festivalsList="festivalsList" /> -->
       <CarouselComponent :festivalsList="festivalsList" />
     </section>
     <section>

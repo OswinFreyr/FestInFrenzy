@@ -5,23 +5,24 @@ const props = defineProps({
 </script>
 
 
-<template >
+<template>
   <div
-    class="card card-side bg-base-100 shadow-xl"
-    style="display: flex; flex-direction: row"
+    class="card card-side bg-base-100 shadow-xl w-[500px]"
+    style="display: flex; flex-direction: row; "
   >
     <figure>
       <img
-        src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-        alt="Movie"
+        src="https://picsum.photos/200/300"
+        alt="Photo aléatoire"
       />
     </figure>
     <div class="card-body">
-      <h2 class="card-title">{{  props.festival.nom }}</h2>
-      <p>{{  props.festival.discipline_dominante }}</p>
+      <h2 class="card-title">{{ props.festival.nom }}</h2>
+      <p>{{ props.festival.discipline_dominante }}</p>
       <div class="card-actions justify-end">
-        <!-- <button class="btn btn-primary">Watch</button> -->
+        <button class="btn btn-primary">En savoir plus</button>
       </div>
     </div>
   </div>
 </template>
+

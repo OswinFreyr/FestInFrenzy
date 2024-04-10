@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, onMounted, watchEffect } from "vue";
+import { defineProps, watchEffect } from "vue";
 const props = defineProps({
   festivalsList: Array,
   filters: Object,
@@ -75,7 +75,7 @@ watchEffect(() => {
         :to="{ name: 'festival', params: { id: item.id } }"
         :key="item.id"
       >
-        <FestivalCardComponent class="cardCarousel" :festival="item" />
+        <FestivalCardComponent :festival="item" />
       </NuxtLink>
     </UCarousel>
   </div>
@@ -88,8 +88,5 @@ watchEffect(() => {
   /* justify-content: space-evenly; */
   list-style: none;
 }
-/* .cardCarousel {
-  width: 150%;
-  margin-right: 200px;
-} */
+
 </style>
