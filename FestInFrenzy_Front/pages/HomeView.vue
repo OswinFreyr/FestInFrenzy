@@ -25,23 +25,30 @@ onMounted(async () => {
 
 <template>
   <Header/>
+ 
   <app class="app">
     <section class="carroussel">
+      <h2>Festivals du moment</h2>
       <FestivalsList :festivalsList="festivalsList" />
     </section>
     <section class="carroussel">
+      <h2>Favoris</h2>
       <FestivalsList :festivalsList="festivalsList" />
     </section>
     <section class="carroussel">
+      <h2>Catégorie A</h2>
       <FestivalsList :festivalsList="festivalsList" />
     </section>
     <section class="carroussel">
+      <h2>Catégorie B</h2>
       <FestivalsList :festivalsList="festivalsList" />
     </section>
     <section class="carroussel">
+      <h2>Catégorie C</h2>
       <FestivalsList :festivalsList="festivalsList" />
     </section>
     <section class="carroussel">
+      <h2>Catégorie D</h2>
       <FestivalsList :festivalsList="festivalsList" />
     </section>
   </app>

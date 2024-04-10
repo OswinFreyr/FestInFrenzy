@@ -1,23 +1,20 @@
 <script setup>
 import {defineProps} from 'vue'
 const props = defineProps({
-  festivalsList: Array
+  festivalsList: Array,
+  filter: String
 })
 </script>
 
 <template>
     <div >
-    <h1>Liste festivals</h1>
     <ul class="festivalsList" >
-
-      <li class="carousel" v-for="festival in festivalsList" :key="festival.id">
+      <li v-for="festival in festivalsList" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
           <festivalCardComponent :festival="festival"/>
       </NuxtLink>
       </li>
     </ul>
-    <button @click="previousFestival"><</button>
-    <button @click="nextFestival">></button>
   </div>
 
 </template>

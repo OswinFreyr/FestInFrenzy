@@ -1,28 +1,27 @@
 <script setup>
-
 const props = defineProps({
-  festival: Object
-
-})
-
+  festival: Object,
+});
 </script>
 
-<template>
-<div class="card">
-    <h1>{{ props.festival.nom }}</h1>
-    <p> {{ props.festival.discipline_dominante }}</p>
-</div>
+
+<template >
+  <div
+    class="card card-side bg-base-100 shadow-xl"
+    style="display: flex; flex-direction: row"
+  >
+    <figure>
+      <img
+        src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+        alt="Movie"
+      />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">{{  props.festival.nom }}</h2>
+      <p>{{  props.festival.discipline_dominante }}</p>
+      <div class="card-actions justify-end">
+        <!-- <button class="btn btn-primary">Watch</button> -->
+      </div>
+    </div>
+  </div>
 </template>
-
-<style>
-    .card {
-        width: 200px; 
-    height: 200px; 
-    background-color: #ffffff;
-    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.75);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-
-</style>
