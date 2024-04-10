@@ -29,7 +29,7 @@ async function getRegionById(req, res) {
             res.json(region);
         }
         else {
-            res.json({"error": `festival ${id} not found :(`});
+            res.json({"error": `region ${id} not found :(`});
         }
     }
     catch (err) {
@@ -37,6 +37,7 @@ async function getRegionById(req, res) {
     }
 };
 
+/*
 async function addFestivalToRegion (req, res){
     try {
         const id = req.params.id;
@@ -47,5 +48,6 @@ async function addFestivalToRegion (req, res){
         res.status(500).json({message: err.message})
     }
 };
+*/
 
-module.exports = { createRegion, getAllRegion, getRegionById, addFestivalToRegion }
+module.exports = { createRegion, getAllRegion, getRegionById }

@@ -37,6 +37,7 @@ async function getMoisById(req, res) {
     }
 };
 
+/*
 async function addFestivalToMois (req, res){
     try {
         const id = req.params.id;
@@ -47,5 +48,6 @@ async function addFestivalToMois (req, res){
         res.status(500).json({message: err.message})
     }
 };
+*/
 
-module.exports = { createMois, getAllMois, getMoisById, addFestivalToMois }
+module.exports = { createMois, getAllMois, getMoisById, }

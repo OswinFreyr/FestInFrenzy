@@ -29,7 +29,7 @@ async function getEnvergureById(req, res) {
             res.json(envergure);
         }
         else {
-            res.json({"error": `festival ${id} not found :(`});
+            res.json({"error": `envergure ${id} not found :(`});
         }
     }
     catch (err) {
@@ -37,6 +37,7 @@ async function getEnvergureById(req, res) {
     }
 };
 
+/*
 async function addFestivalToEnvergure (req, res){
     try {
         const id = req.params.id;
@@ -47,5 +48,6 @@ async function addFestivalToEnvergure (req, res){
         res.status(500).json({message: err.message})
     }
 };
+*/
 
-module.exports = { createEnvergure, getAllEnvergure, getEnvergureById, addFestivalToEnvergure }
+module.exports = { createEnvergure, getAllEnvergure, getEnvergureById, }

@@ -29,7 +29,7 @@ async function getLocalisationById(req, res) {
             res.json(localisation);
         }
         else {
-            res.json({"error": `festival ${id} not found :(`});
+            res.json({"error": `localisation ${id} not found :(`});
         }
     }
     catch (err) {
@@ -37,6 +37,7 @@ async function getLocalisationById(req, res) {
     }
 };
 
+/*
 async function addFestivalToLocalisation (req, res){
     try {
         const id = req.params.id;
@@ -47,5 +48,6 @@ async function addFestivalToLocalisation (req, res){
         res.status(500).json({message: err.message})
     }
 };
+*/
 
-module.exports = { createLocalisation, getAllLocalisation, getLocalisationById, addFestivalToLocalisation }
+module.exports = { createLocalisation, getAllLocalisation, getLocalisationById, }

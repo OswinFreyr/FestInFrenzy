@@ -12,8 +12,8 @@ async function createFestival(req, res) {
 
 async function getAllFestivals(req, res) {
     try{
-        const { identifiant, nom, site_internet, e_mail, sous_categorie } = req.query;
-        const festivals = await festivalService.getAllFestivals({ identifiant, nom, site_internet, e_mail, sous_categorie });
+        const { offset, limit, identifiant, nom, site_internet, e_mail, sous_categorie } = req.query;
+        const festivals = await festivalService.getAllFestivals({ offset, limit, identifiant, nom, site_internet, e_mail, sous_categorie });
         res.json(festivals);    
     }
     catch (err) {
@@ -37,6 +37,7 @@ async function getFestivalById(req, res) {
     }
 };
 
+/*
 async function addRegionToFestival (req, res){
     try {
         const idFestival = req.params.idFestival;
@@ -96,5 +97,6 @@ async function addLocalisationToFestival (req, res){
         res.status(500).json({message: err.message})
     }
 }
+*/
 
-module.exports = { createFestival, getFestivalById, getAllFestivals };
+module.exports = { createFestival, getFestivalById, getAllFestivals, };

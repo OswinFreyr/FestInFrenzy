@@ -37,6 +37,7 @@ async function getCommuneById(req, res) {
     }
 };
 
+/*
 async function addFestivalToCommune (req, res){
     try {
         const id = req.params.id;
@@ -47,5 +48,6 @@ async function addFestivalToCommune (req, res){
         res.status(500).json({message: err.message})
     }
 };
+*/
 
-module.exports = { createCommune, getAllCommune, getCommuneById, addFestivalToCommune }
+module.exports = { createCommune, getAllCommune, getCommuneById, }

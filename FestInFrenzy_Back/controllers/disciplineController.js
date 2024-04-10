@@ -29,7 +29,7 @@ async function getDisciplineById(req, res) {
             res.json(discipline);
         }
         else {
-            res.json({"error": `festival ${id} not found :(`});
+            res.json({"error": `discipline ${id} not found :(`});
         }
     }
     catch (err) {
@@ -37,6 +37,7 @@ async function getDisciplineById(req, res) {
     }
 };
 
+/*
 async function addFestivalToDiscipline (req, res){
     try {
         const id = req.params.id;
@@ -47,5 +48,6 @@ async function addFestivalToDiscipline (req, res){
         res.status(500).json({message: err.message})
     }
 };
+*/
 
-module.exports = { createDiscipline, getAllDiscipline, getDisciplineById, addFestivalToDiscipline }
+module.exports = { createDiscipline, getAllDiscipline, getDisciplineById, }

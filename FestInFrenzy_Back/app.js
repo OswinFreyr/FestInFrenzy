@@ -15,6 +15,13 @@ const moisRouter = require("./routes/moisRoute");
 const app = express();
 const PORT = 2000;
 
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 app.use(express.json({limit: "2mb"}));
 
 app.use("/api/v1/festivals", festivalRouter);
