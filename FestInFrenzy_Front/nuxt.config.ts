@@ -8,4 +8,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
+  googleFonts: {
+    families : {
+      'Major Mono Display' : true
+    },
+    download : false,
+    fontsDir: 'assets/fonts'
+
+  }
 })

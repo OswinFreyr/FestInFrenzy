@@ -1,68 +1,59 @@
 <script setup>
-import FestivalsList from '../components/FestivalsListComponent.vue';
-import Header from '../components/HeaderComponent.vue';
-import Footer from '../components/FooterComponent.vue';
-
-
+import FestivalsList from "../components/FestivalsListComponent.vue";
+import Header from "../components/HeaderComponent.vue";
+import Footer from "../components/FooterComponent.vue";
 
 let festivalsList = ref([]);
-// Récupération des données via l'API
 onMounted(async () => {
-  const festivalsApi = await fetch('/datasProvisoires/festivals.json');
+  const festivalsApi = await fetch("/datasProvisoires/festivals.json");
   festivalsList.value = await festivalsApi.json();
-  festivalsList.value = festivalsList.value.festivals
-  // console.log("onMounted HomeView liste festivals: ")
-  // console.log(festivalsList.value);
-})
-
-// watch(festivalsList, async( )=>{
-//   // Remplacer le path par l'appel API
-//   const festivalsApi = await fetch('@/datasProvisoires/festivals.json');
-//   festivalsList.value = await festivalsApi.json();
-// })
-
+  festivalsList.value = festivalsList.value.festivals;
+});
 </script>
 
 <template>
-  <Header/>
- 
-  <app class="app">
-    <section class="carroussel">
-      <h2>Festivals du moment</h2>
-      <FestivalsList :festivalsList="festivalsList" />
+  <Header />
+  <main class="main">
+    <section>
+      <div class="enTete">
+        <h2>Festivals du moment</h2>
+        <button class="voirPlus">Voir plus</button>
+      </div>
+      <!-- <FestivalsList :festivalsList="festivalsList" /> -->
+      <CarouselComponent :festivalsList="festivalsList" />
     </section>
-    <section class="carroussel">
-      <h2>Favoris</h2>
-      <FestivalsList :festivalsList="festivalsList" />
+    <section>
+      <div class="enTete">
+        <h2>Vos coups de coeur</h2>
+        <button class="voirPlus">Voir plus</button>
+      </div>
+      <CarouselComponent :festivalsList="festivalsList" />
     </section>
-    <section class="carroussel">
-      <h2>Catégorie A</h2>
-      <FestivalsList :festivalsList="festivalsList" />
-    </section>
-    <section class="carroussel">
-      <h2>Catégorie B</h2>
-      <FestivalsList :festivalsList="festivalsList" />
-    </section>
-    <section class="carroussel">
-      <h2>Catégorie C</h2>
-      <FestivalsList :festivalsList="festivalsList" />
-    </section>
-    <section class="carroussel">
-      <h2>Catégorie D</h2>
-      <FestivalsList :festivalsList="festivalsList" />
-    </section>
-  </app>
-  <Footer/>
+  </main>
+  <Footer />
 </template>
 
 <style>
-  .app {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  /* .carroussel {
-    display: flex;
-    flex-direction: row;
-  } */
+.main {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+}
+section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+section h2 {
+  margin-bottom: 20px;
+}
+.enTete {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.voirPlus {
+  margin-right: 50px;
+}
 </style>

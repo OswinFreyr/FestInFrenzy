@@ -1,9 +1,9 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 
 const props = defineProps({
   festivalsList: Array,
-  filters: Object 
+  filters: Object,
 });
 
 // ! Exemple de props pour les filtres : !
@@ -17,43 +17,40 @@ const props = defineProps({
 
 const filterFestivals = () => {
   const { festivalsList, filters } = props;
-  // vérifier si des filtres sont définis
   if (filters) {
-    // on va filtrer la liste des festivals en fonction des filtres
-    return festivalsList.filter(festival => {
+    return festivalsList.filter((festival) => {
       let match = true;
-          if (this.filters.discipline && this.filters.discipline !== '') {
-            match = festival.discipline_dominante === this.filters.discipline;
-          }
-          if (this.filters.region && this.filters.region !== '') {
-            match = match && festival.region_principale_de_deroulement === this.filters.region;
-          }
-          if (this.filters.commune && this.filters.commune !== '') {
-            match = match && festival.commune_principale_de_deroulement.toLowerCase().includes(this.filters.commune.toLowerCase());
-          }
-          if (this.filters.envergure && this.filters.envergure !== '') {
-            match = match && festival.envergure_territoriale.toLowerCase().includes(this.filters.envergure.toLowerCase());
-          }
-          if (this.filters.period && this.filters.period !== '') {
-            match = match && festival.periode_mois && festival.periode_mois.includes(this.filters.period);
-          }
-          return match;
-  });
-} else { 
-  return festivalsList;
-}};
+      if (filters.discipline && filters.discipline !== "") {
+        match = festival.discipline_dominante === filters.discipline;
+      }
+      if (filters.region && filters.region !== "") {
+        match = match && festival.region_principale_de_deroulement === filters.region;
+      }
+      if (filters.commune && filters.commune !== "") {
+        match = match && festival.commune_principale_de_deroulement.toLowerCase().includes(filters.commune.toLowerCase());
+      }
+      if (filters.envergure && filters.envergure !== "") {
+        match = match && festival.envergure_territoriale.toLowerCase().includes(filters.envergure.toLowerCase());
+      }
+      if (filters.period && filters.period !== "") {
+        match = match && festival.periode_mois && festival.periode_mois.includes(filters.period);
+      }
+      return match;
+    });
+  } else {
+    return festivalsList;
+  }
+};
 
-watchEffect(() => {
-  filterFestivals();
-});
+const filteredFestivals = filterFestivals();
+console.log("filteredFestivals")
+console.log(filteredFestivals);
 </script>
 
 <template>
   <div>
-    <h1>Liste festivals</h1>
     <ul class="festivalsList">
-      <!-- Utilisez la liste filtrée des festivals pour afficher les éléments -->
-      <li v-for="festival in filterFestivals()" :key="festival.id">
+      <li v-for="festival in filteredFestivals" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
           <festivalCardComponent :festival="festival" />
         </NuxtLink>
@@ -63,10 +60,10 @@ watchEffect(() => {
 </template>
 
 <style>
-  .festivalsList {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    list-style: none;
-  }
+.festivalsList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style: none;
+}
 </style>
