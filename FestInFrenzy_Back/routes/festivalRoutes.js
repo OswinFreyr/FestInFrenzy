@@ -8,7 +8,4 @@ router.post("/", festivalController.createFestival);
 
 router.get("/:id", festivalController.getFestivalById);
 
-router.get("/:offset&:limit", festivalController.getFestivalForPage);
-
-
 module.exports = router;

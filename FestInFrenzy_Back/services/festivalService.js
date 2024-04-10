@@ -6,8 +6,9 @@ async function createFestival(festival) {
 
 async function getAllFestivals(criterias = {}) {
     const where = {};
-    const offset = {};
-    const limit = {};
+    let offset = 0;
+    let limit = 10;
+    let festivals
     if (criterias.identifiant) {
         where.identifiant = criterias.identifiant;
     }
@@ -24,24 +25,24 @@ async function getAllFestivals(criterias = {}) {
         where.sous_categorie = criterias.sous_categorie;
     }
     if (criterias.offset) {
-        offset.offset = criterias.offset;
+        offset = criterias.offset;
     }
     if (criterias.limit) {
-        limit.limit = criterias.limit;
+        limit = criterias.limit;
     }
-    const festivals = await Festival.findAll({
-        where,
-        include: {
-            model: Region,
-            model: Commune,
-            model: Discipline,
-            model: Envergure,
-            model: Localisation,
-            model: Mois,
-        },
-        offset,
-        limit,
-    });
+        festivals = await Festival.findAll({
+            where,
+            include: {
+                model: Region,
+                model: Commune,
+                model: Discipline,
+                model: Envergure,
+                model: Localisation,
+                model: Mois,
+            },
+            offset,
+            limit,
+        });
     if (festivals) {
         return festivals;
     }

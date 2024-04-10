@@ -38,6 +38,15 @@ async function getDisciplineById(id) {
     }
 }
 
+async function updateDiscipline(id) {
+    
+}
+
+async function deleteDiscipline(id) {
+    
+}
+
+/*
 async function addFestivalToDiscipline(idFestivals, disciplineId) {
     const discipline = await Discipline.findByPk(disciplineId);
     const tabIdFestivals = idFestivals.ids
@@ -55,14 +64,7 @@ async function addFestivalToDiscipline(idFestivals, disciplineId) {
         }
     })
 }
-
-async function updateDiscipline(id) {
-
-}
-
-async function deleteDiscipline(id) {
-
-}
+*/
 
 async function createAllDisciplines(disciplines) {
     const tabDisciplines = []
