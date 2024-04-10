@@ -1,13 +1,13 @@
 <script setup>
-import FestivalsList from "../components/FestivalsListComponent.vue";
 import Header from "../components/HeaderComponent.vue";
 import Footer from "../components/FooterComponent.vue";
 
 let festivalsList = ref([]);
 onMounted(async () => {
-  const festivalsApi = await fetch("/datasProvisoires/festivals.json");
+  const festivalsApi = await fetch("http://10.3.211.68:2000/api/v1/festivals");
   festivalsList.value = await festivalsApi.json();
-  festivalsList.value = festivalsList.value.festivals;
+  // festivalsList.value = festivalsList.value.festivals;  
+  
 });
 </script>
 
@@ -28,6 +28,13 @@ onMounted(async () => {
       </div>
       <CarouselComponent :festivalsList="festivalsList" />
     </section>
+    <!-- <section>
+      <div class="enTete">
+        <h2>test liste filtrée</h2>
+        <button class="voirPlus">Voir plus</button>
+      </div>
+      <FestivalsListComponent :festivalsList="festivalsList"/>
+    </section> -->
   </main>
   <Footer />
 </template>

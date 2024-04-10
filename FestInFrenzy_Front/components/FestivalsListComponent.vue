@@ -6,15 +6,6 @@ const props = defineProps({
   filters: Object,
 });
 
-// ! Exemple de props pour les filtres : !
-//  filters: {
-//     discipline: 'Musique', // exemple de filtre par discipline dominante
-//     region: 'Île-de-France', // exemple de filtre par région
-//     commune: 'Paris', // exemple de filtre par commune
-//     envergure: 'Intercommunal', // exemple de filtre par envergure
-//     period: 'Juillet' // exemple de filtre par période
-//  }
-
 const filterFestivals = () => {
   const { festivalsList, filters } = props;
   if (filters) {
@@ -38,19 +29,22 @@ const filterFestivals = () => {
       return match;
     });
   } else {
-    return festivalsList;
+    // console.log(props.festivalsList)
+    return props.festivalsList;
   }
 };
 
-// const filteredFestivals = filterFestivals();
-// console.log("filteredFestivals")
-// console.log(filteredFestivals);
+console.log("festivalsList avant appel filtre")
+console.log(festivalsList)
+const filteredFestivals = filterFestivals();
+console.log("filteredFestivals")
+console.log(filteredFestivals);
 </script>
 
 <template>
   <div>
     <ul class="festivalsList">
-      <li v-for="festival in festivalsList" :key="festival.id">
+      <li v-for="festival in filteredFestivals" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
           <festivalCardComponent :festival="festival" />
         </NuxtLink>
@@ -58,12 +52,3 @@ const filterFestivals = () => {
     </ul>
   </div>
 </template>
-
-<style>
-.festivalsList {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  list-style: none;
-}
-</style>

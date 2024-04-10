@@ -5,6 +5,7 @@ const props = defineProps({
   filters: Object,
 });
 
+
 // ! Exemple de props pour les filtres : !
 //  filters: {
 //     discipline: 'Musique', // exemple de filtre par discipline dominante
