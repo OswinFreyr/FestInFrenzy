@@ -52,7 +52,6 @@ watchEffect(() => {
   <div>
     <h1>Liste festivals</h1>
     <ul class="festivalsList">
-      <!-- Utilisez la liste filtrée des festivals pour afficher les éléments -->
       <li class="carousel" v-for="festival in filterFestivals()" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
           <festivalCardComponent :festival="festival" />
