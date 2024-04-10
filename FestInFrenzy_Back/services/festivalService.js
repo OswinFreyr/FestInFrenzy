@@ -160,40 +160,41 @@ async function deleteFestival(id) {
 
 }
 
-async function createAllFestivals(festivals) {
+async function createAllFestivals(festivals, regions, communes, disciplines, envergures, localisations, mois) {
     try {
 
+        const tabFestivals = [];
+        // console.log(mois);
         festivals.forEach(async festivalData => {
-            const festival = await Festival.create({
+            const festivalMoisIds = [];
+            festivalData.periode_mois?.forEach(el => {
+                festivalMoisIds.push(mois[el])
+            });
+
+            tabFestivals.push({
                 identifiant: festivalData.identifiant,
                 nom: festivalData.nom_du_festival,
                 site_internet: festivalData.site_internet_du_festival,
                 e_mail: festivalData.adresse_e_mail,
                 sous_categorie: festivalData.sous_categorie,
-            });
-            
-            const region = await Region.findOrCreate({ where: { nom: festivalData.region_principale_de_deroulement } });
-            await festival.setRegion(region[0]);
-            
-            const commune = await Commune.findOrCreate({ where: { nom: festivalData.commune_principale_de_deroulement } });
-            await festival.setCommune(commune[0]);
-
-            const discipline = await Discipline.findOrCreate({ where: { nom: festivalData.discipline_dominante } });
-            await festival.setDiscipline(discipline[0]);
-
-            const envergure = await Envergure.findOrCreate({ where: { zone: festivalData.envergure_territoriale } });
-            await festival.setEnvergure(envergure[0]);
-
-            const localisation = await Localisation.findOrCreate({ where: { latitude: festivalData.geocodage_xy.lat, longitude: festivalData.geocodage_xy.lon }  });
-            await festival.setLocalisation(localisation[0]);
-
-            for (const moisData of festivalData.periode_mois) {
-                const mois = await Mois.findOrCreate({ where: { nom: moisData } });
-                await festival.addMois(mois[0]);
-            }
-            
-            console.log('Tous les festivals ont été créés avec succès.');
+                regionId: regions[festivalData.region_principale_de_deroulement],
+                communeId: communes[festivalData.commune_principale_de_deroulement],
+                disciplineId: disciplines[festivalData.discipline_dominante],
+                envergureId: envergures[festivalData.envergure_territoriale],
+                localisationId: localisations[festivalData.geocodage_xy?.lat + "; " + festivalData.geocodage_xy?.lon],
+                mois: festivalMoisIds
+            })
         });
+
+        festivals = await Festival.bulkCreate(tabFestivals, {ignoreDuplicates: true })
+
+        for (const festival of festivals) {
+            let moisList = tabFestivals.filter(el => el.identifiant === festival.identifiant)[0].mois
+            await festival.addMois(moisList)
+            // console.log(moisList)
+        }
+        
+        console.log('Tous les festivals ont été créés avec succès.');
 
     } catch (err) {
         console.error('Erreur lors de la création des festivals :', err);

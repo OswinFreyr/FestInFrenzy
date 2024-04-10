@@ -65,9 +65,16 @@ async function deleteDiscipline(id) {
 }
 
 async function createAllDisciplines(disciplines) {
+    const tabDisciplines = []
     disciplines.forEach(async discipline => {
-        return await Discipline.create(discipline);
+        tabDisciplines.push(discipline)
     })
+    disciplines = await Discipline.bulkCreate(tabDisciplines, {ignoreDuplicates: true, returning: true})
+    const disciplineList = {}
+    disciplines.forEach(discipline => {
+        disciplineList[discipline.nom] = discipline.id
+    })
+    return disciplineList;
 }
 
 module.exports = { createDiscipline, getAllDisciplines, getDisciplineById, createAllDisciplines }

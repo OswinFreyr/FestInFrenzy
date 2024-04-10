@@ -25,10 +25,10 @@ app.use("/api/v1/envergures", envergureRouter);
 app.use("/api/v1/localisations", localisationRouter);
 app.use("/api/v1/mois", moisRouter);
 
-db.sync({force : true})
+db.sync(/*{force : true}*/)
     .then(async () => {
-        Init.runInit()
-        // app.listen(PORT, () => {
-        //     console.log(`http://localhost:${PORT}`);
-        // })
+        // Init.runInit()
+        app.listen(PORT, () => {
+            console.log(`http://localhost:${PORT}`);
+        })
     });

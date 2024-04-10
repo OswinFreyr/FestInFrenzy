@@ -13,7 +13,7 @@ async function createFestival(req, res) {
 async function getAllFestivals(req, res) {
     try{
         const { identifiant, nom, site_internet, e_mail, sous_categorie } = req.query;
-        const festivals = await festivalService.getAllFestivals({ nom, famille});
+        const festivals = await festivalService.getAllFestivals({ identifiant, nom, site_internet, e_mail, sous_categorie });
         res.json(festivals);    
     }
     catch (err) {

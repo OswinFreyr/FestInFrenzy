@@ -65,9 +65,16 @@ async function deleteRegion(id) {
 }
 
 async function createAllRegions(regions) {
+    const tabRegions = []
     regions.forEach(async region=> {
-        return await Region.create(region);
+        tabRegions.push(region)
     })
+    regions = await Region.bulkCreate(tabRegions, {ignoreDuplicates: true, returning: true})
+    const regionList = {}
+    regions.forEach(region => {
+        regionList[region.nom] = region.id
+    })
+    return regionList;
 }
 
 module.exports = { createRegion, getAllRegions, getRegionById, addFestivalToRegion, createAllRegions }

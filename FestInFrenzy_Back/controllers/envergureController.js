@@ -12,8 +12,8 @@ async function createEnvergure(req, res) {
 
 async function getAllEnvergure(req, res) {
     try{
-        const { nom, } = req.query;
-        const envergure = await envergureService.getAllEnvergures({ nom, });
+        const { zone, } = req.query;
+        const envergure = await envergureService.getAllEnvergures({ zone, });
         res.json(envergure);    
     }
     catch (err) {

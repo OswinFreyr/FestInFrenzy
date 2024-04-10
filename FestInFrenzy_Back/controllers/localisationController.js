@@ -12,8 +12,8 @@ async function createLocalisation(req, res) {
 
 async function getAllLocalisation(req, res) {
     try{
-        const { nom, } = req.query;
-        const localisation = await localisationService.getAllLocalisations({ nom, });
+        const { latitude, longitude, } = req.query;
+        const localisation = await localisationService.getAllLocalisations({ latitude, longitude, });
         res.json(localisation);    
     }
     catch (err) {

@@ -65,9 +65,16 @@ async function deleteMois(id) {
 }
 
 async function createAllMois(mois) {
+    const tabMois = []
     mois.forEach(async mois_sing=> {
-        return await Mois.create(mois_sing);
+        tabMois.push(mois_sing)
     })
+    mois = await Mois.bulkCreate(tabMois, {ignoreDuplicates: true, returning: true})
+    const moisList = {}
+    mois.forEach(mois_sing => {
+        moisList[mois_sing.nom] = mois_sing.id
+    })
+    return moisList;
 }
 
 module.exports = { createMois, getAllMois, getMoisById, addFestivalToMois, createAllMois }

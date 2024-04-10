@@ -68,9 +68,17 @@ async function deleteLocalisation(id) {
 }
 
 async function createAllLocalisations(localisations) {
+    const tabLocalisations = [];
     localisations.forEach(async localisation => {
-        return await Localisation.create(localisation);
+        tabLocalisations.push(localisation)
     })
+    localisations = await Localisation.bulkCreate(tabLocalisations, {ignoreDuplicates: true, returning: true})
+    const localisationList = {}
+    localisations.forEach(localisation => {
+        
+        localisationList[localisation.latitude + "; " + localisation.longitude] = localisation.id
+    })
+    return localisationList;
 }
 
 module.exports = { createLocalisation, getAllLocalisations, getLocalisationById, createAllLocalisations }

@@ -7,8 +7,8 @@ async function createEnvergure(envergure) {
 
 async function getAllEnvergures(criterias = {}) {
     const where = {}
-    if (criterias.emplacement) {
-        where.emplacement = criterias.emplacement;
+    if (criterias.zone) {
+        where.zone = criterias.zone;
     }
     const envergures = await Envergure.findAll({
         where,
@@ -65,9 +65,16 @@ async function deleteEnvergure(id) {
 }
 
 async function createAllEnvergures(envergures) {
+    const tabEnvergure = [];
     envergures.forEach(async envergure => {
-        return await Envergure.create(envergure);
+        tabEnvergure.push(envergure)
     })
+    envergures = await Envergure.bulkCreate(tabEnvergure, {ignoreDuplicates: true, returning: true})
+    const envergureList = {}
+    envergures.forEach(envergure => {
+        envergureList[envergure.zone] = envergure.id
+    })
+    return envergureList;
 }
 
 module.exports = { createEnvergure, getAllEnvergures, getEnvergureById, createAllEnvergures }

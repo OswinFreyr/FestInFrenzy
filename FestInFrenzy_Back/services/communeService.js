@@ -68,9 +68,16 @@ async function deleteCommune(id) {
 }
 
 async function createAllCommunes(communes) {
+    const tabCommunes = []
     communes.forEach(async commune => {
-        return await Commune.create(commune);
+        tabCommunes.push(commune)
     })
+    communes = await Commune.bulkCreate(tabCommunes, {ignoreDuplicates: true, returning: true})
+    const communeList = {}
+    communes.forEach(commune => {
+        communeList[commune.nom] = commune.id
+    })
+    return communeList;
 }
 
 module.exports = { createCommune, getAllCommunes, getCommuneById, createAllCommunes }
