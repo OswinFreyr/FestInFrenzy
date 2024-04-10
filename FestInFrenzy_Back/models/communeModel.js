@@ -4,11 +4,11 @@ const { DataTypes } = require("sequelize")
 const Commune = db.define('commune', {
     nom: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
-    postal_code: {
+    code_postal: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
 }, {
 });

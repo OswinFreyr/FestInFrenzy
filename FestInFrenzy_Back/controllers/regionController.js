@@ -48,14 +48,4 @@ async function addFestivalToRegion (req, res){
     }
 };
 
-async function createAllRegions(req, res) {
-    try {
-        const regions = await regionService.createAllRegions(req.body);
-        res.json(regions);
-    }
-    catch (err) {
-        res.status(500).json({message: err.message})
-    }
-};
-
-module.exports = { createRegion, getAllRegion, getRegionById, addFestivalToRegion, createAllRegions }
+module.exports = { createRegion, getAllRegion, getRegionById, addFestivalToRegion }

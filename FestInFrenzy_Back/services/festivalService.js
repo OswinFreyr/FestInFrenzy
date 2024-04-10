@@ -171,30 +171,30 @@ async function createAllFestivals(festivals) {
                 e_mail: festivalData.adresse_e_mail,
                 sous_categorie: festivalData.sous_categorie,
             });
-
+            
             const region = await Region.findOrCreate({ where: { nom: festivalData.region_principale_de_deroulement } });
-            await festival.addRegion(region[0]);
-
+            await festival.setRegion(region[0]);
+            
             const commune = await Commune.findOrCreate({ where: { nom: festivalData.commune_principale_de_deroulement } });
-            await festival.addCommune(commune[0]);
+            await festival.setCommune(commune[0]);
 
             const discipline = await Discipline.findOrCreate({ where: { nom: festivalData.discipline_dominante } });
-            await festival.addDiscipline(discipline[0]);
+            await festival.setDiscipline(discipline[0]);
 
-            const envergure = await Envergure.findOrCreate({ where: { nom: festivalData.envergure_territoriale } });
-            await festival.addEnvergure(envergure[0]);
+            const envergure = await Envergure.findOrCreate({ where: { zone: festivalData.envergure_territoriale } });
+            await festival.setEnvergure(envergure[0]);
 
-            const localisation = await Localisation.findOrCreate({ where: { geocodage_xy: festivalData.geocodage_xy } });
-            await festival.addLocalisation(localisation[0]);
+            const localisation = await Localisation.findOrCreate({ where: { latitude: festivalData.geocodage_xy.lat, longitude: festivalData.geocodage_xy.lon }  });
+            await festival.setLocalisation(localisation[0]);
 
-            for (const moisData of festivalData.periode) {
+            for (const moisData of festivalData.periode_mois) {
                 const mois = await Mois.findOrCreate({ where: { nom: moisData } });
                 await festival.addMois(mois[0]);
             }
             
+            console.log('Tous les festivals ont été créés avec succès.');
         });
 
-        console.log('Tous les festivals ont été créés avec succès.');
     } catch (err) {
         console.error('Erreur lors de la création des festivals :', err);
     }

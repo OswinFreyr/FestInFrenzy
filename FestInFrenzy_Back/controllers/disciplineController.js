@@ -48,14 +48,4 @@ async function addFestivalToDiscipline (req, res){
     }
 };
 
-async function createAllDisciplines(req, res) {
-    try {
-        const disciplines = await disciplineService.createAllDisciplines(req.body);
-        res.json(disciplines);
-    }
-    catch (err) {
-        res.status(500).json({message: err.message})
-    }
-};
-
-module.exports = { createDiscipline, getAllDiscipline, getDisciplineById, addFestivalToDiscipline, createAllDisciplines }
+module.exports = { createDiscipline, getAllDiscipline, getDisciplineById, addFestivalToDiscipline }

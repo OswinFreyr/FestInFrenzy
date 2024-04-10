@@ -48,14 +48,4 @@ async function addFestivalToEnvergure (req, res){
     }
 };
 
-async function createAllEnvergures(req, res) {
-    try {
-        const envergures = await envergureService.createAllEnvergures(req.body);
-        res.json(envergures);
-    }
-    catch (err) {
-        res.status(500).json({message: err.message})
-    }
-};
-
-module.exports = { createEnvergure, getAllEnvergure, getEnvergureById, addFestivalToEnvergure, createAllEnvergures }
+module.exports = { createEnvergure, getAllEnvergure, getEnvergureById, addFestivalToEnvergure }

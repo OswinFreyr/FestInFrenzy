@@ -8,6 +8,5 @@ router.post("/", festivalController.createFestival);
 
 router.get("/:id", festivalController.getFestivalById);
 
-router.post("/addFestivals", festivalController.createAllFestivals);
 
 module.exports = router;

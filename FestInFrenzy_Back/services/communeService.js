@@ -73,4 +73,4 @@ async function createAllCommunes(communes) {
     })
 }
 
-module.exports = { createCommune, getAllCommunes, getCommuneById }
+module.exports = { createCommune, getAllCommunes, getCommuneById, createAllCommunes }

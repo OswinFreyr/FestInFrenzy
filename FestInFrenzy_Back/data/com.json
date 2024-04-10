@@ -1,0 +1,42 @@
+[
+    {
+        "nom": "Avoine",
+        "code_postal": 37420
+    },
+    {
+        "nom": "Braine",
+        "code_postal": 2220
+    },
+    {
+        "nom": "Carpentras",
+        "code_postal": 84203
+    },
+    {
+        "nom": "Carrières-sur-Seine",
+        "code_postal": 78420
+    },
+    {
+        "nom": "Chatillon",
+        "code_postal": 92320
+    },
+    {
+        "nom": "Chinon",
+        "code_postal": 37500
+    },
+    {
+        "nom": "Conflans-Sainte-Honorine",
+        "code_postal": 78700
+    },
+    {
+        "nom": "Éourres",
+        "code_postal": 5300
+    },
+    {
+        "nom": "Eyguieres",
+        "code_postal": 13430
+    },
+    {
+        "nom": "Juan-Les-Pins",
+        "code_postal": 6160
+    }
+]

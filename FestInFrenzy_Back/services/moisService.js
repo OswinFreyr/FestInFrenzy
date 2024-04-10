@@ -66,7 +66,7 @@ async function deleteMois(id) {
 
 async function createAllMois(mois) {
     mois.forEach(async mois_sing=> {
-        return await moiscreate(mois_sing);
+        return await Mois.create(mois_sing);
     })
 }
 

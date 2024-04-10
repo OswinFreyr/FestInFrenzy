@@ -5,7 +5,6 @@ const communeController = require("../controllers/communeController");
 
 router.get("/", communeController.getAllCommune);
 router.post("/", communeController.createCommune);
-router.post("/addCommune", communeController.createAllCommunes);
 
 router.get("/:id", communeController.getCommuneById);
 

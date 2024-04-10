@@ -10,16 +10,16 @@ Region.hasMany(Festival);
 Festival.belongsTo(Region);
 
 Commune.hasMany(Festival);
-Festival.belongsTo(Region);
+Festival.belongsTo(Commune);
 
 Discipline.hasMany(Festival);
-Festival.belongsTo(Region);
+Festival.belongsTo(Discipline);
 
 Envergure.hasMany(Festival);
-Festival.belongsTo(Region);
+Festival.belongsTo(Envergure);
 
 Localisation.hasMany(Festival);
-Festival.belongsTo(Region);
+Festival.belongsTo(Localisation);
 
 Mois.belongsToMany(Festival, { through: "periode" });
 Festival.belongsToMany(Mois, { through: "periode" });

@@ -5,7 +5,6 @@ const envergureController = require("../controllers/envergureController");
 
 router.get("/", envergureController.getAllEnvergure);
 router.post("/", envergureController.createEnvergure);
-router.post("/addEnvergure", envergureController.createAllEnvergures);
 
 router.get("/:id", envergureController.getEnvergureById);
 

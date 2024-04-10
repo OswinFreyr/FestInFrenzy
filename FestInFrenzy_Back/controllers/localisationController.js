@@ -48,14 +48,4 @@ async function addFestivalToLocalisation (req, res){
     }
 };
 
-async function createAllLocalisations(req, res) {
-    try {
-        const localisations = await localisationService.createAllLocalisations(req.body);
-        res.json(localisations);
-    }
-    catch (err) {
-        res.status(500).json({message: err.message})
-    }
-};
-
-module.exports = { createLocalisation, getAllLocalisation, getLocalisationById, addFestivalToLocalisation, createAllLocalisations }
+module.exports = { createLocalisation, getAllLocalisation, getLocalisationById, addFestivalToLocalisation }
