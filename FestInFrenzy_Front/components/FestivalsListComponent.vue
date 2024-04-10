@@ -42,15 +42,15 @@ const filterFestivals = () => {
   }
 };
 
-const filteredFestivals = filterFestivals();
-console.log("filteredFestivals")
-console.log(filteredFestivals);
+// const filteredFestivals = filterFestivals();
+// console.log("filteredFestivals")
+// console.log(filteredFestivals);
 </script>
 
 <template>
   <div>
     <ul class="festivalsList">
-      <li v-for="festival in filteredFestivals" :key="festival.id">
+      <li v-for="festival in festivalsList" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
           <festivalCardComponent :festival="festival" />
         </NuxtLink>

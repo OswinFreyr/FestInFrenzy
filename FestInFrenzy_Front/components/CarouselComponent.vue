@@ -53,9 +53,9 @@ const filterFestivals = () => {
   }
 };
 
-const filteredFestivals = filterFestivals();
-console.log("filteredFestivals");
-console.log(filteredFestivals);
+// const filteredFestivals = filterFestivals();
+// console.log("filteredFestivals");
+// console.log(filteredFestivals);
 
 watchEffect(() => {
   filterFestivals();
@@ -70,19 +70,13 @@ watchEffect(() => {
       :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
       indicators
       class="rounded-lg overflow-hidden"
-      :prev-button="{
-        color: 'gray',
-        icon: 'i-heroicons-arrow-left-20-solid',
-        class: '-left-12',
-      }"
-      :next-button="{
-        color: 'gray',
-        icon: 'i-heroicons-arrow-right-20-solid',
-        class: '-right-12',
-      }"
-      arrows
     >
-      <FestivalCardComponent class="cardCarousel" :festival="item" />
+      <NuxtLink
+        :to="{ name: 'festival', params: { id: item.id } }"
+        :key="item.id"
+      >
+        <FestivalCardComponent class="cardCarousel" :festival="item" />
+      </NuxtLink>
     </UCarousel>
   </div>
 </template>
@@ -94,7 +88,8 @@ watchEffect(() => {
   /* justify-content: space-evenly; */
   list-style: none;
 }
-.cardCarousel {
-  width: 100%;
-}
+/* .cardCarousel {
+  width: 150%;
+  margin-right: 200px;
+} */
 </style>
