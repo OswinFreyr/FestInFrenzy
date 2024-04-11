@@ -3,12 +3,10 @@
     <div class="logo">
       <img src="/public/logo.png" alt="FestInFrenzy Logo" style="width: 33%;">
     </div>
-    <form onsubmit="event.preventDefault();" role="search">
-      <label for="search">Rechercher un festival</label>
-      <input id="search" type="search" placeholder="Rechercher..." autofocus required class="search-input">
-      <button type="submit" class="search-button">
-        <i class="fas fa-search"></i> <!-- Icone de loupe -->
-      </button>
+    <form onsubmit="event.preventDefault();" role="search" class="search-form">
+      <label for="search" class="sr-only">Search for stuff</label>
+      <input id="search" type="search" placeholder="Search..." autofocus required />
+      <button type="submit">Go</button>    
     </form>
     <nav class="nav">
       <ul class="nav-list">
@@ -16,7 +14,7 @@
           <NuxtLink to="/">Accueil</NuxtLink>
         </li>
         <li class="nav-item">
-          <NuxtLink to="/">Événements</NuxtLink>
+  <NuxtLink to="/events">Événements</NuxtLink>
         </li>
         <li class="nav-item">
           <NuxtLink to="favoris">Favoris</NuxtLink>
@@ -30,6 +28,9 @@
 </template>
 
 <script setup>
+  const submitForm = () => {
+    // Code pour soumettre le formulaire
+  };
 </script>
 
 <style scoped>
@@ -103,74 +104,74 @@
 }
 
 .nav-item a:hover {
-  color: #422d61;
+  color: #0e0024;
 }
 </style>
 
 <style scoped>
-  /* Variables */
-  :root {
-    --rad: .7rem;
-    --dur: .3s;
-    --color-dark: #2f2f2f;
-    --color-light: #fff;
-    --color-brand: #57bd84;
-    --font-fam: 'Lato', sans-serif;
-    --height: 5rem;
-    --btn-width: 6rem;
-    --bez: cubic-bezier(0, 0, 0.43, 1.49);
-  }
+/* Variables */
+:root {
+  --rad: .7rem;
+  --dur: .3s;
+  --color-dark: #2f2f2f;
+  --color-light: #fff;
+  --color-brand: #57bd84;
+  --font-fam: 'Lato', sans-serif;
+  --height: 5rem;
+  --btn-width: 6rem;
+  --bez: cubic-bezier(0, 0, 0.43, 1.49);
+}
 
-  /* Main styles */
-  form {
-    position: relative;
-    width: 30rem;
-    background: var(--color-brand);
-    border-radius: var(--rad);
+/* Main styles */
+form {
+  position: relative;
+  width: 30rem;
+  background: var(--color-brand);
+  border-radius: var(--rad);
+}
+input, button {
+  height: var(--height);
+  font-family: var(--font-fam);
+  border: 0;
+  color: var(--color-dark);
+  font-size: 1.8rem;
+}
+input[type="search"] {
+  outline: 0;
+  width: 100%;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  appearance: none;
+  transition: all var(--dur) var(--bez);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+}
+button {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--color-brand);
+  border-radius: 0 var(--rad) var(--rad) 0;
+}
+input:not(:placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+  + button {
+    display: block;
   }
-  input, button {
-    height: var(--height);
-    font-family: var(--font-fam);
-    border: 0;
-    color: var(--color-dark);
-    font-size: 1.8rem;
-  }
-  input[type="search"] {
-    outline: 0;
-    width: 100%;
-    background: var(--color-light);
-    padding: 0 1.6rem;
-    border-radius: var(--rad);
-    appearance: none;
-    transition: all var(--dur) var(--bez);
-    transition-property: width, border-radius;
-    z-index: 1;
-    position: relative;
-  }
-  button {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: var(--btn-width);
-    font-weight: bold;
-    background: var(--color-brand);
-    border-radius: 0 var(--rad) var(--rad) 0;
-  }
-  input:not(:placeholder-shown) {
-    border-radius: var(--rad) 0 0 var(--rad);
-    width: calc(100% - var(--btn-width));
-    + button {
-      display: flex;
-    }
-  }
-  label {
-    position: absolute;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0;
-    border: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-  }
+}
+label {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
 </style>

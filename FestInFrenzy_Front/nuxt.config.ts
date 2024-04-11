@@ -1,13 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  // devtools: { enabled: true },
   runtimeConfig: {
-    MapBoxKey: process.env.MAP_BOX_KEY,
     public: {
-      ApiUrl: process.env.API_URL,
+      mapBoxKey: '',
+      apiUrl: '',
     }
   },
+  extends: ['@nuxt/ui-pro'],
   // css: [],
   // postcss: {
   //   plugins: {

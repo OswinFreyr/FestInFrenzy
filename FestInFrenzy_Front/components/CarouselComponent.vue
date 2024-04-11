@@ -64,13 +64,18 @@ watchEffect(() => {
     <UCarousel
       v-slot="{ item }"
       :items="festivalsList"
-      :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
+      :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3',    
+      indicators: {
+        wrapper: 'relative bottom-0 mt-2'
+      }
+      }"
       indicators
       class="rounded-lg overflow-hidden"
     >
       <NuxtLink
         :to="{ name: 'festival', params: { id: item.id } }"
         :key="item.id"
+        style="padding: 30px;"
       >
         <FestivalCardComponent :festival="item" />
       </NuxtLink>
