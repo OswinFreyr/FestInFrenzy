@@ -29,7 +29,6 @@ const filterFestivals = () => {
       return match;
     });
   } else {
-    // console.log(props.festivalsList)
     return props.festivalsList;
   }
 };

@@ -5,6 +5,8 @@ const props = defineProps({
   filters: Object,
 });
 
+console.log("festivalsList carousel")
+console.log(props.festivalsList)
 
 // ! Exemple de props pour les filtres : !
 //  filters: {

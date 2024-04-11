@@ -2,8 +2,8 @@
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <!-- <img src="/assets/logo.png" alt="FestInFrenzy Logo"> -->
-        </div>
+         <img src="/public/logo.png" alt="FestInFrenzy Logo">
+        </div>        
         <div class="footer-links">
           <ul class="footer-list">
             <li class="footer-item">
@@ -102,5 +102,6 @@
     text-align: center;
     margin-top: 1.5rem;
   }
+
   </style>
-  
+

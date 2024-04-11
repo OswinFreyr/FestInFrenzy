@@ -2,24 +2,41 @@
 import Header from "../components/HeaderComponent.vue";
 import Footer from "../components/FooterComponent.vue";
 
+const runtimeConfig = useRuntimeConfig()
+
 let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
+
+let festivalsUrl = ""
+
+
 onMounted(async () => {
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
   // tous les festivals
-  const festivalsApi = await fetch("http://10.3.211.68:2000/api/v1/festivals");
+  const festivalsApi = await fetch(festivalsUrl);
   festivalsList.value = await festivalsApi.json();
-  // festivalsList.value = festivalsList.value.festivals;  
+  // festivalsList.value = festivalsList.value.festivals;
 
   // festivals spectacles de rue
-  const disciplineSpectacleDeRueFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/3');
-  disciplineSpectacleDeRueFestivalsList.value = await disciplineSpectacleDeRueFestivalsListApi.json();
-  disciplineSpectacleDeRueFestivalsList.value = disciplineSpectacleDeRueFestivalsList.value.festivals;
+  const disciplineSpectacleDeRueFestivalsListApi = await fetch(
+    "http://10.3.211.68:2000/api/v1/disciplines/3"
+  );
+  disciplineSpectacleDeRueFestivalsList.value =
+    await disciplineSpectacleDeRueFestivalsListApi.json();
+  disciplineSpectacleDeRueFestivalsList.value =
+    disciplineSpectacleDeRueFestivalsList.value.festivals;
+  // console.log(disciplineSpectacleDeRueFestivalsList.value)
 
   // festivals cinéma
-  const disciplineCinemaFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/9');
-  disciplineCinemaFestivalsList.value = await disciplineCinemaFestivalsListApi.json();
-  disciplineCinemaFestivalsList.value = disciplineCinemaFestivalsList.value.festivals;
+  const disciplineCinemaFestivalsListApi = await fetch(
+    "http://10.3.211.68:2000/api/v1/disciplines/9"
+  );
+  disciplineCinemaFestivalsList.value =
+    await disciplineCinemaFestivalsListApi.json();
+  disciplineCinemaFestivalsList.value =
+    disciplineCinemaFestivalsList.value.festivals;
+  // console.log(disciplineCinemaFestivalsList.value)
 });
 </script>
 
@@ -110,4 +127,11 @@ section h2 {
 .voirPlus {
   margin-right: 50px;
 }
+
+.categoryTitle {
+  font-family: 'Victor Mono', monospace;
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
 </style>
