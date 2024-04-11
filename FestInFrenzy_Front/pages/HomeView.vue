@@ -44,21 +44,21 @@ onMounted(async () => {
   <main class="main">
     <section>
       <div class="enTete">
-        <h2>Festivals du moment</h2>
+        <h2 class="categoryTitle">Nos recommandations</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent :festivalsList="festivalsList" />
     </section>
     <section>
       <div class="enTete">
-        <h2>Vos coups de coeur</h2>
+        <h2 class="categoryTitle">Vos coups de coeur</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent :festivalsList="festivalsList" />
     </section>
     <section>
       <div class="enTete">
-        <h2>Spectacles vivants</h2>
+        <h2 class="categoryTitle">Spectacles vivants</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent
@@ -67,7 +67,7 @@ onMounted(async () => {
     </section>
     <section>
       <div class="enTete">
-        <h2>Cinéma</h2>
+        <h2 class="categoryTitle">Cinéma</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent :festivalsList="disciplineCinemaFestivalsList" />
@@ -99,4 +99,11 @@ section h2 {
 .voirPlus {
   margin-right: 50px;
 }
+
+.categoryTitle {
+  font-family: 'Victor Mono', monospace;
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
 </style>

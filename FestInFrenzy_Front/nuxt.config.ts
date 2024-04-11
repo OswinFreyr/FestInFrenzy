@@ -17,9 +17,9 @@ export default defineNuxtConfig({
   modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
   googleFonts: {
     families: {
-      'Major Mono Display': {
+      'Victor Mono': {
         wght: 400,
-      }
+      },
     },
     download: false,
     fontsDir: 'assets/fonts'
