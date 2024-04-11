@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <main class="main" >
+    <main class="main">
       <ULandingSection>
         <div class="relative">
           <img
@@ -27,7 +27,7 @@
         <section>
           <div class="enTete">
             <div class="relative pl-8 text-primary font-bold">
-              Festivals du moment
+              Nos recommandations
             </div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
               <template #trailing>
@@ -56,6 +56,7 @@
           </div>
           <CarouselComponent :festivalsList="festivalsList" />
         </section>
+        <div class="background-photo"></div>
         <section>
           <div class="enTete">
             <div class="relative pl-8 text-primary font-bold">
@@ -107,12 +108,12 @@ let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
 
-let festivalsUrl = ""
-let disciplineUrl = ""
+let festivalsUrl = "";
+let disciplineUrl = "";
 
 onMounted(async () => {
-  festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
-  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines"
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
+  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines";
   // tous les festivals
   const festivalsApi = await fetch(festivalsUrl);
   festivalsList.value = await festivalsApi.json();
@@ -127,9 +128,7 @@ onMounted(async () => {
     disciplineSpectacleDeRueFestivalsList.value.festivals;
 
   // Festivals cinéma
-  const disciplineCinemaFestivalsListApi = await fetch(
-    disciplineUrl + "/9"
-  );
+  const disciplineCinemaFestivalsListApi = await fetch(disciplineUrl + "/9");
   disciplineCinemaFestivalsList.value =
     await disciplineCinemaFestivalsListApi.json();
   disciplineCinemaFestivalsList.value =
@@ -167,5 +166,13 @@ section h2 {
   font-family: "Victor Mono", monospace;
   text-transform: uppercase;
   font-size: 28px;
+}
+
+.background-photo {
+  background-image: url("../public/festival.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  background-attachment: fixed;
 }
 </style>
