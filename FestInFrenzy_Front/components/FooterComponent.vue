@@ -2,7 +2,7 @@
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-logo">
-          <img src="/assets/logo.png" alt="FestInFrenzy Logo">
+          <!-- <img src="/assets/logo.png" alt="FestInFrenzy Logo"> -->
         </div>
         <div class="footer-links">
           <ul class="footer-list">

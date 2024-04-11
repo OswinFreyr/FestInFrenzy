@@ -1,7 +1,7 @@
 <template>
     <header class="header">
       <div class="logo">
-        <img src="/assets/logo.png" alt="FestInFrenzy Logo">
+        <!-- <img src="/assets/logo.png" alt="FestInFrenzy Logo"> -->
       </div>
       <nav class="nav">
         <ul class="nav-list">
