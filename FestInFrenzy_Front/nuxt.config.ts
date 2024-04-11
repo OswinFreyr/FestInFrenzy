@@ -8,13 +8,12 @@ export default defineNuxtConfig({
       ApiUrl: process.env.API_URL,
     }
   },
-  css: ['~/assets/css/main.css'],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
+  // css: [],
+  // postcss: {
+  //   plugins: {
+  //     autoprefixer: {},
+  //   },
+  // },
   modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
   // googleFonts: {
   //   families : {
