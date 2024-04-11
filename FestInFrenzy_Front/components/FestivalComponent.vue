@@ -9,15 +9,19 @@ const route = useRoute();
 let festival = ref({});
 let region = ref({});
 let commune = ref({});
+let localisation = ref({});
+let isLoading = ref(true)
 
 let festivalsUrl = ""
 let regionsUrl = ""
 let communesUrl = ""
+let localisationsUrl = ""
 
 onMounted(async () => {
   festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
   regionsUrl = runtimeConfig.public.apiUrl + "regions"
   communesUrl = runtimeConfig.public.apiUrl + "communes"
+  localisationsUrl = runtimeConfig.public.apiUrl + "localisations"
 
   const festivalId = route.params.id;
   // récupération festival
@@ -41,16 +45,35 @@ onMounted(async () => {
   commune.value.nom = commune.value.nom
     ? commune.value.nom
     : "Commune non renseignée.";
+
+  // recupération localisation
+  const localisationApi = await fetch(
+    localisationsUrl + `/${festival.value.localisationId}`
+  );
+  localisation.value = await localisationApi.json();
+  localisation.value.longitude = localisation.value.longitude
+    ? localisation.value.longitude 
+    : -0.57918;
+  localisation.value.latitude = localisation.value.latitude
+    ? localisation.value.latitude 
+    : 44.837789;
+  
+  localisation.value.longitude = parseFloat(localisation.value.longitude);
+  localisation.value.latitude = parseFloat(localisation.value.latitude);
+  console.log(localisation.value.longitude);
+  console.log(localisation.value.latitude);
+
   // verif mail
   festival.value.e_mail = festival.value.e_mail
     ? `<a href="mailto:${festival.value.e_mail}" target="_blank">Contact</a>`
     : "Adresse email non renseignée.";
-
+  
+  isLoading.value = false;
 });
+
 </script>
 <template>
-  <div>
-    <div>
+  <div v-if="!isLoading" >
       <ul style="display: flex; flex-direction: column; align-items: center">
         <li>
           <h1>{{ festival.nom }}</h1>
@@ -65,22 +88,27 @@ onMounted(async () => {
         <li>{{ festival.sous_categorie }}</li>
         <li>{{ region.nom }}, {{ commune.nom }}</li>
       </ul>
-    </div>
-    <div>
-      <MapboxMap
-        map-id="<MAP_ID>"
-        style="position: absolute; top: 0; bottom: 0; left: 250px; width: 500px;"
-        :options="{
-          style: 'mapbox://styles/mapbox/light-v11', // style URL
-          center: [-68.137343, 45.137451], // starting position
-          zoom: 5 // starting zoom
-        }"
-      >
+      <div style="display: flex; flex-direction: row; justify-content: right; margin-top: -90px;">
+        <MapboxMap
+          map-id="<MAP_ID>"
+          style="position: relative; width: 300px; height: 300px; justify-content: right; "
+          :options="{
+            style: 'mapbox://styles/mapbox/outdoors-v12', // style URL
+            center: [localisation.latitude, localisation.longitude], // starting position
+            zoom: 10 // starting zoom
+          }"
+        >
+          <MapboxDefaultMarker 
+            marker-id="<MARKER_ID>"
+            :options="{compact: false}"
+            :lnglat="[localisation.latitude, localisation.longitude]"
+          >
+          </MapboxDefaultMarker>
           <MapboxGeolocateControl 
-          position="right"
+          position="left"
           />
-      </MapboxMap>
-    </div>
+        </MapboxMap>
+      </div>
   </div>
 </template>
 

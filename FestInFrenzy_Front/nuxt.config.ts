@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     'nuxt-mapbox'
   ],
   mapbox: {
-    accessToken: process.env.NUXT_PUBLIC_MAPBOX_KEY
+    accessToken: process.env.MAPBOX_KEY
   },
   googleFonts: {
     families: {
