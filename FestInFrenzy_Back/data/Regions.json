@@ -1,0 +1,68 @@
+[
+    {
+        "nom": "La Réunion"
+    },
+    {
+        "nom": "Auvergne-Rhône-Alpes"
+    },
+    {
+        "nom": "Nouvelle-Aquitaine"
+    },
+    {
+        "nom": "Île-de-France"
+    },
+    {
+        "nom": "Martinique"
+    },
+    {
+        "nom": "Bretagne"
+    },
+    {
+        "nom": "Polynésie française"
+    },
+    {
+        "nom": "Guadeloupe"
+    },
+    {
+        "nom": "Saint-Barthélemy"
+    },
+    {
+        "nom": "Centre-Val de Loire"
+    },
+    {
+        "nom": "Pays de la Loire"
+    },
+    {
+        "nom": "Corse"
+    },
+    {
+        "nom": "Occitanie"
+    },
+    {
+        "nom": "Hauts-de-France"
+    },
+    {
+        "nom": "Normandie"
+    },
+    {
+        "nom": "Bourgogne-Franche-Comté"
+    },
+    {
+        "nom": "Mayotte"
+    },
+    {
+        "nom": "Saint-Pierre-et-Miquelon"
+    },
+    {
+        "nom": "Grand Est"
+    },
+    {
+        "nom": "Nouvelle-Calédonie"
+    },
+    {
+        "nom": "Guyane"
+    },
+    {
+        "nom": "Provence-Alpes-Côte d'Azur"
+    }
+]
