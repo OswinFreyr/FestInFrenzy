@@ -1,21 +1,33 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+
+const runtimeConfig = useRuntimeConfig()
+
 const route = useRoute();
 
 let festival = ref({});
 let region = ref({});
 let commune = ref({});
+
+let festivalsUrl = ""
+let regionsUrl = ""
+let communesUrl = ""
+
 onMounted(async () => {
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
+  regionsUrl = runtimeConfig.public.apiUrl + "regions"
+  communesUrl = runtimeConfig.public.apiUrl + "communes"
+
   const festivalId = route.params.id;
   // récupération festival
   let festivalAPI = await fetch(
-    `http://10.3.211.68:2000/api/v1/festivals/${festivalId}`
+    festivalsUrl + `/${festivalId}`
   );
   festival.value = await festivalAPI.json();
   // recupération région
   const regionApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/regions/${festival.value.regionId}`
+    regionsUrl + `/${festival.value.regionId}`
   );
   region.value = await regionApi.json();
   region.value.nom = region.value.nom
@@ -23,7 +35,7 @@ onMounted(async () => {
     : "Région non renseignée.";
   // recupération commune
   const communeApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/communes/${festival.value.communeId}`
+    communesUrl + `/${festival.value.communeId}`
   );
   commune.value = await communeApi.json();
   commune.value.nom = commune.value.nom
@@ -38,20 +50,37 @@ onMounted(async () => {
 </script>
 <template>
   <div>
-    <ul style="display: flex; flex-direction: column; align-items: center">
-      <li>
-        <h1>{{ festival.nom }}</h1>
-      </li>
-      <li><em>Identifiant :</em> {{ festival.identifiant }}</li>
-    </ul>
-    <ul>
-      <li>
-        <a href="{{ festival.site_internet }}" target="_blank"> Site Web</a>
-      </li>
-      <li v-html="festival.e_mail"></li>
-      <li>{{ festival.sous_categorie }}</li>
-      <li>{{ region.nom }}, {{ commune.nom }}</li>
-    </ul>
+    <div>
+      <ul style="display: flex; flex-direction: column; align-items: center">
+        <li>
+          <h1>{{ festival.nom }}</h1>
+        </li>
+        <li><em>Identifiant :</em> {{ festival.identifiant }}</li>
+      </ul>
+      <ul>
+        <li>
+          <a href="{{ festival.site_internet }}" target="_blank"> Site Web</a>
+        </li>
+        <li v-html="festival.e_mail"></li>
+        <li>{{ festival.sous_categorie }}</li>
+        <li>{{ region.nom }}, {{ commune.nom }}</li>
+      </ul>
+    </div>
+    <div>
+      <MapboxMap
+        map-id="<MAP_ID>"
+        style="position: absolute; top: 0; bottom: 0; left: 250px; width: 500px;"
+        :options="{
+          style: 'mapbox://styles/mapbox/light-v11', // style URL
+          center: [-68.137343, 45.137451], // starting position
+          zoom: 5 // starting zoom
+        }"
+      >
+          <MapboxGeolocateControl 
+          position="right"
+          />
+      </MapboxMap>
+    </div>
   </div>
 </template>
 
