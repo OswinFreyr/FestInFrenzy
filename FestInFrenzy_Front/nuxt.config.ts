@@ -15,13 +15,15 @@ export default defineNuxtConfig({
   //   },
   // },
   modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
-  // googleFonts: {
-  //   families : {
-  //     'Major Mono Display' : true
-  //   },
-  //   download : false,
-  //   fontsDir: 'assets/fonts'
-
-  // }
+  googleFonts: {
+    families: {
+      'Major Mono Display': {
+        wght: 400,
+      }
+    },
+    download: false,
+    fontsDir: 'assets/fonts'
+  }
+  
 })
 
