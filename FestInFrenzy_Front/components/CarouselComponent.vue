@@ -72,13 +72,13 @@ watchEffect(() => {
       indicators
       class="rounded-lg overflow-hidden"
     >
-      <NuxtLink
+      <!-- <NuxtLink
         :to="{ name: 'festival', params: { id: item.id } }"
         :key="item.id"
         style="padding: 30px;"
-      >
-        <FestivalCardComponent :festival="item" />
-      </NuxtLink>
+      > -->
+        <FestivalCardComponent :festival="item" :festivalId="item.id"/>
+      <!-- </NuxtLink> -->
     </UCarousel>
   </div>
 </template>
