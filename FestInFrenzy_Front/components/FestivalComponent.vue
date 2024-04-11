@@ -34,18 +34,18 @@ onMounted(async () => {
   const festivalId = route.params.id;
   // Récupération du festival
   let festivalAPI = await fetch(
-    `http://10.3.211.68:2000/api/v1/festivals/${festivalId}`
+    `http://192.168.56.1:2000/api/v1/festivals/${festivalId}`
   );
   festival.value = await festivalAPI.json();
   // Récupération de la région
   const regionApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/regions/${festival.value.regionId}`
+    `http://192.168.56.1:2000/api/v1/regions/${festival.value.regionId}`
   );
   region.value = await regionApi.json();
   region.value.nom = region.value.nom ? region.value.nom : "Région non renseignée.";
   // Récupération de la commune
   const communeApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/communes/${festival.value.communeId}`
+    `http://192.168.56.1:2000/api/v1/communes/${festival.value.communeId}`
   );
   commune.value = await communeApi.json();
   commune.value.nom = commune.value.nom ? commune.value.nom : "Commune non renseignée.";

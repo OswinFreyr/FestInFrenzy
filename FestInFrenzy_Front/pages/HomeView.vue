@@ -26,7 +26,7 @@
       <FestivalsSection v-if="!isLoading">
         <section>
           <div class="enTete">
-            <div class="relative pl-8 text-primary font-bold">
+            <div class="relative pl-8 text-primary font-bold titreSection" >
               Nos recommandations
             </div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
@@ -38,11 +38,11 @@
               </template>
             </UButton>
           </div>
-          <CarouselComponent :festivalsList="festivalsList" />
+          <CarouselComponent :festivalsList="randomFestivals" />
         </section>
         <section>
           <div class="enTete">
-            <div class="relative pl-8 text-primary font-bold">
+            <div class="relative pl-8 text-primary font-bold titreSection">
               Vos coups de coeur
             </div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
@@ -60,7 +60,7 @@
 
         <section style="margin-top: 40px;">
           <div class="enTete">
-            <div class="relative pl-8 text-primary font-bold">
+            <div class="relative pl-8 text-primary font-bold titreSection">
               Spectacles vivants
             </div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
@@ -78,7 +78,7 @@
         </section>
         <section>
           <div class="enTete">
-            <div class="relative pl-8 text-primary font-bold">Cinéma</div>
+            <div class="relative pl-8 text-primary font-bold titreSection">Cinéma</div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
               <template #trailing>
                 <UIcon
@@ -102,13 +102,14 @@
 <script setup>
 import Header from "../components/HeaderComponent.vue";
 import Footer from "../components/FooterComponent.vue";
-
+import {getRandomFestivals} from "../utils/randomFestivals"
 const runtimeConfig = useRuntimeConfig();
 
 let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
-
+let isLoading = ref(true);
+let randomFestivals = ref([])
 let festivalsUrl = "";
 let disciplineUrl = "";
 
@@ -136,6 +137,9 @@ onMounted(async () => {
     disciplineCinemaFestivalsList.value.festivals;
 
   isLoading.value = false;
+  // randoms festivals pour "Nos recommandations"
+  let randomIndexes = getRandomFestivals(festivalsList.value);
+  randomFestivals = randomIndexes.map(index => festivalsList.value[index]);
 });
 </script>
 
@@ -166,6 +170,11 @@ section h2 {
   font-family: "Victor Mono", monospace;
   text-transform: uppercase;
   font-size: 28px;
+}
+
+.titreSection {
+  font-size: 28px;
+  text-transform: uppercase;
 }
 
 .background-photo {

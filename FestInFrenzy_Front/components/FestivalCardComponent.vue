@@ -26,11 +26,11 @@ let discipline = ref({});
 let region = ref({});
 onMounted(async () => {
   const disciplineApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/disciplines/${props.festival.disciplineId}`
+    `http://192.168.56.1:2000/api/v1/disciplines/${props.festival.disciplineId}`
   );
   discipline.value = await disciplineApi.json();
   const regionApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/regions/${props.festival.regionId}`
+    `http://192.168.56.1:2000/api/v1/regions/${props.festival.regionId}`
   );
   region.value = await regionApi.json();
   region.value.nom = region.value.nom
