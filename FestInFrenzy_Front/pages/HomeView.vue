@@ -2,24 +2,31 @@
 import Header from "../components/HeaderComponent.vue";
 import Footer from "../components/FooterComponent.vue";
 
+const runtimeConfig = useRuntimeConfig()
+
 let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
+let festivalsUrl = ""
+
+
 onMounted(async () => {
-  // tous les festivals
-  const festivalsApi = await fetch("http://10.3.211.68:2000/api/v1/festivals");
-  festivalsList.value = await festivalsApi.json();
-  // festivalsList.value = festivalsList.value.festivals;  
+    festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
 
-  // festivals spectacles de rue
-  const disciplineSpectacleDeRueFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/3');
-  disciplineSpectacleDeRueFestivalsList.value = await disciplineSpectacleDeRueFestivalsListApi.json();
-  disciplineSpectacleDeRueFestivalsList.value = disciplineSpectacleDeRueFestivalsList.value.festivals;
-
-  // festivals cinéma
-  const disciplineCinemaFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/9');
-  disciplineCinemaFestivalsList.value = await disciplineCinemaFestivalsListApi.json();
-  disciplineCinemaFestivalsList.value = disciplineCinemaFestivalsList.value.festivals;
+    // tous les festivals
+    const festivalsApi = await fetch(festivalsUrl);
+    festivalsList.value = await festivalsApi.json();
+    // festivalsList.value = festivalsList.value.festivals;  
+  
+    // festivals spectacles de rue
+    const disciplineSpectacleDeRueFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/3');
+    disciplineSpectacleDeRueFestivalsList.value = await disciplineSpectacleDeRueFestivalsListApi.json();
+    disciplineSpectacleDeRueFestivalsList.value = disciplineSpectacleDeRueFestivalsList.value.festivals;
+  
+    // festivals cinéma
+    const disciplineCinemaFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/9');
+    disciplineCinemaFestivalsList.value = await disciplineCinemaFestivalsListApi.json();
+    disciplineCinemaFestivalsList.value = disciplineCinemaFestivalsList.value.festivals;
 });
 </script>
 
