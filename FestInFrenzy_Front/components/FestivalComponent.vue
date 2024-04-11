@@ -7,11 +7,11 @@ let festival = ref({});
 
 onMounted(async () => {
   const festivalId = route.params.id;
-
-  let festivalAPI = await fetch("/datasProvisoires/festivals.json");
-  const festivals = (await festivalAPI.json()).festivals;
-
-  festival.value = festivals.find((el) => el.id === festivalId);
+  
+  let festivalAPI = await fetch(`http://10.3.211.68:2000/api/v1/festivals/${festivalId}`);
+  // const festivals = (await festivalAPI.json()).festivals;
+  // festival.value = festivals.find((el) => el.id === festivalId);
+  festival.value = await festivalAPI.json();
 });
 </script>
 <template>
@@ -22,14 +22,8 @@ onMounted(async () => {
       <li>{{ festival.site_internet }}</li>
       <li>{{ festival.e_mail }}</li>
       <li>{{ festival.sous_categorie }}</li>
-      <li>{{ festival.periode }}</li>
-      <li>{{ festival.regions.nom }}</li>
-      <li>{{ festival.communes.nom }}</li>
-      <li>{{ festival.communes.postal_code }}</li>
-      <li>{{ festival.disciplines.nom }}</li>
-      <li>{{ festival.positions.latitude }}</li>
-      <li>{{ festival.positions.longitude }}</li>
-      <li>{{ festival.envergures.zone }}</li>
+      <!-- <li>{{ festival.mois.nom }}</li> -->
+
     </ul>
   </div>
 </template>
