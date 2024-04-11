@@ -5,6 +5,7 @@ const festivalController = require("../controllers/festivalController");
 
 router.get("/", festivalController.getAllFestivals);
 router.post("/", festivalController.createFestival);
+router.get("/limit", festivalController.getLimitedFestivals);
 
 router.get("/:id", festivalController.getFestivalById);
 
