@@ -57,7 +57,8 @@
           <CarouselComponent :festivalsList="festivalsList" />
         </section>
         <div class="background-photo"></div>
-        <section>
+
+        <section style="margin-top: 40px;">
           <div class="enTete">
             <div class="relative pl-8 text-primary font-bold">
               Spectacles vivants
@@ -134,7 +135,6 @@ onMounted(async () => {
   disciplineCinemaFestivalsList.value =
     disciplineCinemaFestivalsList.value.festivals;
 
-  // Marque le chargement comme terminé
   isLoading.value = false;
 });
 </script>
