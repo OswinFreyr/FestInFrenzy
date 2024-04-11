@@ -7,7 +7,8 @@
     target="_blank"
     highlight
     :badge="{ label: 'Date' }"
-    :button="{ label: 'En savoir plus', onClick: redirectToFestival }"    :features="[region.nom]"
+    :button="{ label: 'En savoir plus', onClick: redirectToFestival }"
+    :features="[region.nom]"
     orientation="horizontal"
     align="bottom"
     style="padding: 30px"
@@ -15,38 +16,41 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-const runtimeConfig = useRuntimeConfig();
+import { useRouter } from "vue-router";
 
-const router = useRouter();
 const props = defineProps({
   festival: Object,
-  festivalId : Number,
+  festivalId: Number,
 });
 
+const runtimeConfig = useRuntimeConfig();
+const router = useRouter();
 let discipline = ref({});
 let region = ref({});
-let disciplinesUrl = ""
-let regionsUrl = ""
+let disciplinesUrl = "";
+let regionsUrl = "";
+
+const redirectToFestival = () => {
+  router.push({ name: "festival", params: { id: props.festivalId } });
+};
+
 onMounted(async () => {
   disciplinesUrl = runtimeConfig.public.apiUrl + "disciplines";
   regionsUrl = runtimeConfig.public.apiUrl + "regions";
 
+  // récupération discipline
   const disciplineApi = await fetch(
     `${disciplinesUrl}/${props.festival.disciplineId}`
   );
   discipline.value = await disciplineApi.json();
-  const regionApi = await fetch(
-    `${regionsUrl}/${props.festival.regionId}`
-  );
+
+  // récupération région
+  const regionApi = await fetch(`${regionsUrl}/${props.festival.regionId}`);
   region.value = await regionApi.json();
   region.value.nom = region.value.nom
     ? region.value.nom
     : "Région non renseignée.";
 });
-const redirectToFestival = () => {
-  router.push({ name: 'festival', params: { id: props.festivalId } });
-};
 </script>
 
 <style scoped>

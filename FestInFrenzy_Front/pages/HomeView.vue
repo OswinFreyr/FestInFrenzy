@@ -94,7 +94,7 @@
         </section>
       </FestivalsSection>
       <div v-else>
-        <p>Chargement en cours...</p>
+        <p style="text-align: center">Chargement en cours...</p>
       </div>
     </main>
     <Footer />
@@ -105,8 +105,8 @@
 import Header from "../components/HeaderComponent.vue";
 import Footer from "../components/FooterComponent.vue";
 import { getRandomFestivals } from "../utils/randomFestivals";
-const runtimeConfig = useRuntimeConfig();
 
+const runtimeConfig = useRuntimeConfig();
 let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
@@ -119,6 +119,7 @@ let disciplineUrl = "";
 onMounted(async () => {
   festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
   disciplineUrl = runtimeConfig.public.apiUrl + "disciplines";
+
   // tous les festivals
   const festivalsApi = await fetch(festivalsUrl);
   festivalsList.value = await festivalsApi.json();
@@ -139,12 +140,12 @@ onMounted(async () => {
   disciplineCinemaFestivalsList.value =
     disciplineCinemaFestivalsList.value.festivals;
 
-  isLoading.value = false;
   // randoms festivals pour "Nos recommandations"
   let randomIndexesRecommandations = getRandomFestivals(festivalsList.value);
   randomFestivalsRecommandations.value = randomIndexesRecommandations.map(
     (index) => festivalsList.value[index]
   );
+
   // randoms festivals cinéma
   let randomIndexesCinema = getRandomFestivals(
     disciplineCinemaFestivalsList.value
@@ -152,6 +153,8 @@ onMounted(async () => {
   randomFestivalsCinema.value = randomIndexesCinema.map(
     (index) => disciplineCinemaFestivalsList.value[index]
   );
+
+  isLoading.value = false;
 });
 </script>
 
