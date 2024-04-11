@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps } from "vue";
+iimport { defineProps } from "vue";
 
 const props = defineProps({
   festivalsList: Array,
