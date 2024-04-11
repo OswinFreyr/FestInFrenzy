@@ -3,12 +3,11 @@
     :title="festival.nom"
     :description="discipline.nom"
     icon="i-simple-icons-tailwindcss"
-    :to="{ name: 'festival', params: { id: festival.id } }"
+    :to="{ name: 'festival', params: { id: festivalId } }"
     target="_blank"
     highlight
     :badge="{ label: 'Date' }"
-    :button="{ label: 'En savoir plus' }"
-    :features="[region.nom, 'Portée', 'Plus de valeurs...']"
+    :button="{ label: 'En savoir plus', onClick: redirectToFestival }"    :features="[region.nom, festival.identifiant]"
     orientation="horizontal"
     align="bottom"
     style="padding: 30px"
@@ -16,8 +15,11 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const props = defineProps({
   festival: Object,
+  festivalId : Number,
 });
 
 let discipline = ref({});
@@ -35,6 +37,9 @@ onMounted(async () => {
     ? region.value.nom
     : "Région non renseignée.";
 });
+const redirectToFestival = () => {
+  router.push({ name: 'festival', params: { id: props.festivalId } });
+};
 </script>
 
 <style scoped>

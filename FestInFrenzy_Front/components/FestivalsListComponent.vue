@@ -45,7 +45,7 @@ console.log(filteredFestivals);
     <ul class="festivalsList">
       <li v-for="festival in filteredFestivals" :key="festival.id">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
-          <festivalCardComponent :festival="festival" />
+          <festivalCardComponent :festival="festival"  />
         </NuxtLink>
       </li>
     </ul>
