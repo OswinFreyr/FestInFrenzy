@@ -7,15 +7,11 @@ let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
 const festivalsUrl = config.ApiUrl + "festivals";
-// console.log("festivalUrl")
-// console.log(festivalsUrl)
 
 onMounted(async () => {
   // tous les festivals
   const festivalsApi = await fetch("http://10.3.211.68:2000/api/v1/festivals");
   festivalsList.value = await festivalsApi.json();
-  // festivalsList.value = festivalsList.value.festivals;
-  // console.log(festivalsList.value)
 
   // festivals spectacles de rue
   const disciplineSpectacleDeRueFestivalsListApi = await fetch(
@@ -25,7 +21,6 @@ onMounted(async () => {
     await disciplineSpectacleDeRueFestivalsListApi.json();
   disciplineSpectacleDeRueFestivalsList.value =
     disciplineSpectacleDeRueFestivalsList.value.festivals;
-  // console.log(disciplineSpectacleDeRueFestivalsList.value)
 
   // festivals cinéma
   const disciplineCinemaFestivalsListApi = await fetch(
@@ -35,7 +30,6 @@ onMounted(async () => {
     await disciplineCinemaFestivalsListApi.json();
   disciplineCinemaFestivalsList.value =
     disciplineCinemaFestivalsList.value.festivals;
-  // console.log(disciplineCinemaFestivalsList.value)
 });
 </script>
 
@@ -80,7 +74,6 @@ onMounted(async () => {
 .main {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
 }
 section {
   display: flex;
@@ -101,9 +94,8 @@ section h2 {
 }
 
 .categoryTitle {
-  font-family: 'Victor Mono', monospace;
+  font-family: "Victor Mono", monospace;
   text-transform: uppercase;
   font-size: 28px;
 }
-
 </style>

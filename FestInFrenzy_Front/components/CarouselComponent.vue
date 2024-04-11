@@ -56,10 +56,6 @@ const filterFestivals = () => {
   }
 };
 
-// const filteredFestivals = filterFestivals();
-// console.log("filteredFestivals");
-// console.log(filteredFestivals);
-
 watchEffect(() => {
   filterFestivals();
 });
@@ -88,7 +84,6 @@ watchEffect(() => {
 .festivalsList {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
   list-style: none;
 }
 
