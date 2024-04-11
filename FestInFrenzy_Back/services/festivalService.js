@@ -4,11 +4,9 @@ async function createFestival(festival) {
     return await Festival.create(festival);
 }
 
-async function getAllFestivals(criterias = {}) {
+async function getAllFestivals(criterias = {}, pageId, itemsPerPage) {
     const where = {};
-    let offset = 0;
-    let limit = 10;
-    let festivals
+    const offset = (pageId - 1) * itemsPerPage;
     if (criterias.identifiant) {
         where.identifiant = criterias.identifiant;
     }
@@ -30,7 +28,7 @@ async function getAllFestivals(criterias = {}) {
     if (criterias.limit) {
         limit = criterias.limit;
     }
-        festivals = await Festival.findAll({
+        const {count, rows} = await Festival.findAndCountAll({
             where,
             include: {
                 model: Region,
@@ -40,15 +38,14 @@ async function getAllFestivals(criterias = {}) {
                 model: Localisation,
                 model: Mois,
             },
+            limit: itemsPerPage,
             offset,
-            limit,
         });
-    if (festivals) {
-        return festivals;
-    }
-    else {
-        return null;
-    }
+    return {
+        festivals: rows,
+        count: count,
+        hasMore: count > offset + rows.length
+    };
 }
 
 async function getFestivalById(id) {
