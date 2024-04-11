@@ -16,6 +16,8 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+const runtimeConfig = useRuntimeConfig();
+
 const router = useRouter();
 const props = defineProps({
   festival: Object,
@@ -24,13 +26,18 @@ const props = defineProps({
 
 let discipline = ref({});
 let region = ref({});
+let disciplinesUrl = ""
+let regionsUrl = ""
 onMounted(async () => {
+  disciplinesUrl = runtimeConfig.public.apiUrl + "disciplines";
+  regionsUrl = runtimeConfig.public.apiUrl + "regions";
+
   const disciplineApi = await fetch(
-    `http://192.168.56.1:2000/api/v1/disciplines/${props.festival.disciplineId}`
+    `${disciplinesUrl}/${props.festival.disciplineId}`
   );
   discipline.value = await disciplineApi.json();
   const regionApi = await fetch(
-    `http://192.168.56.1:2000/api/v1/regions/${props.festival.regionId}`
+    `${regionsUrl}/${props.festival.regionId}`
   );
   region.value = await regionApi.json();
   region.value.nom = region.value.nom
