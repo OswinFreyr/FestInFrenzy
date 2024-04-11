@@ -9,17 +9,18 @@ let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
 
 let festivalsUrl = ""
-
+let disciplineUrl = ""
 
 onMounted(async () => {
   festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
+  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines"
   // tous les festivals
   const festivalsApi = await fetch(festivalsUrl);
   festivalsList.value = await festivalsApi.json();
 
   // festivals spectacles de rue
   const disciplineSpectacleDeRueFestivalsListApi = await fetch(
-    "http://10.3.211.68:2000/api/v1/disciplines/3"
+    disciplineUrl + "/3"
   );
   disciplineSpectacleDeRueFestivalsList.value =
     await disciplineSpectacleDeRueFestivalsListApi.json();
@@ -28,7 +29,7 @@ onMounted(async () => {
 
   // festivals cinéma
   const disciplineCinemaFestivalsListApi = await fetch(
-    "http://10.3.211.68:2000/api/v1/disciplines/9"
+    disciplineUrl + "/9"
   );
   disciplineCinemaFestivalsList.value =
     await disciplineCinemaFestivalsListApi.json();
