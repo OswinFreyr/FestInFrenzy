@@ -8,7 +8,7 @@
     highlight
     :badge="{ label: 'Date' }"
     :button="{ label: 'En savoir plus' }"
-    :features="[region.nom, 'Portée', 'Plus de valeurs...']"
+    :features="[region.nom, festival.identifiant]"
     orientation="horizontal"
     align="bottom"
     style="padding: 30px"
