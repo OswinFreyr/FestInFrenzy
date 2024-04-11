@@ -31,12 +31,13 @@ onMounted(async () => {
     : "Commune non renseignée.";
   // verif mail
   festival.value.e_mail = festival.value.e_mail
-    ? festival.value.e_mail
+    ? `<a href="mailto:${festival.value.e_mail}" target="_blank">Contact</a>`
     : "Adresse email non renseignée.";
+
 });
 </script>
 <template>
-  <div class="container">
+  <div>
     <ul style="display: flex; flex-direction: column; align-items: center">
       <li>
         <h1>{{ festival.nom }}</h1>
@@ -48,7 +49,7 @@ onMounted(async () => {
         <a href="{{ festival.site_internet }}" target="_blank"> Site Web</a>
       </li>
       <li>
-        <a href="mailto:{{ festival.e_mail }}" target="_blank">Contact</a>
+        {{festival.e_mail}}
       </li>
       <li>{{ festival.sous_categorie }}</li>
       <li>{{ region.nom }}, {{ commune.nom }}</li>
@@ -56,39 +57,3 @@ onMounted(async () => {
   </div>
 </template>
 
-<style>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-h1 {
-  font-family: "Victor Mono", monospace;
-  text-transform: uppercase;
-  font-size: 28px;
-  margin-bottom: 10px;
-}
-
-em {
-  font-style: italic;
-}
-
-a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-</style>

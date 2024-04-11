@@ -20,9 +20,8 @@
   import Footer from "../components/FooterComponent.vue";
   import CarouselComponent from "../components/CarouselComponent.vue";
   import { ref, onMounted } from "vue";
-  import { useRuntimeConfig } from "@nuxtjs/composition-api";
   
-  const config = useRuntimeConfig();
+  // const config = useRuntimeConfig();
   
   let allEventsList = ref([]);
   
