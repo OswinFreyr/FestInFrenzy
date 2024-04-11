@@ -4,7 +4,43 @@ async function createFestival(festival) {
     return await Festival.create(festival);
 }
 
-async function getAllFestivals(criterias = {}, pageId, itemsPerPage) {
+async function getAllFestivals(criterias = {}) {
+    const where = {};
+    if (criterias.identifiant) {
+        where.identifiant = criterias.identifiant;
+    }
+    if (criterias.nom) {
+        where.nom = criterias.nom;
+    }
+    if (criterias.site_internet) {
+        where.site_internet = criterias.site_internet;
+    }
+    if (criterias.e_mail) {
+        where.e_mail = criterias.e_mail;
+    }
+    if (criterias.sous_categorie) {
+        where.sous_categorie = criterias.sous_categorie;
+    }
+    const festivals = await Festival.findAll({
+        where,
+        include: {
+            model: Region,
+            model: Commune,
+            model: Discipline,
+            model: Envergure,
+            model: Localisation,
+            model: Mois,
+        }
+    });
+    if (festivals) {
+        return festivals;
+    }
+    else {
+        return null;
+    }
+}
+
+async function getLimitedFestivals(criterias = {}, pageId, itemsPerPage) {
     const where = {};
     const offset = (pageId - 1) * itemsPerPage;
     if (criterias.identifiant) {
@@ -209,4 +245,4 @@ async function createAllFestivals(festivals, regions, communes, disciplines, env
     }
 }
 
-module.exports = { createFestival, getAllFestivals, getFestivalById, addRegionToFestival, addCommuneToFestival, addDisciplineToFestival, addEnvergureToFestival, addLocalisationToFestival, addMoisToFestival, updateFestival, deleteFestival, createAllFestivals }
+module.exports = { createFestival, getAllFestivals, getLimitedFestivals, getFestivalById, addRegionToFestival, addCommuneToFestival, addDisciplineToFestival, addEnvergureToFestival, addLocalisationToFestival, addMoisToFestival, updateFestival, deleteFestival, createAllFestivals }

@@ -27,16 +27,16 @@ async function getLimitedFestivals(req, res) {
         const pageId = parseInt(pageId1) || 1;
         const itemsPerPage = parseInt(itemsPerPage1) || 10;
         
-        const paginationData = await festivalService.getAllFestivals({ offset, limit, identifiant, nom, site_internet, e_mail, sous_categorie }, pageId, itemsPerPage);
+        const paginationData = await festivalService.getLimitedFestivals({ offset, limit, identifiant, nom, site_internet, e_mail, sous_categorie }, pageId, itemsPerPage);
         const baseUri = `${req.protocol}://${req.get("host")}${req.baseUrl}${req.path}`
 
-        let queryParams
+        let queryParams = "";
         queryParams += itemsPerPage ? `&itemsPerPage=${itemsPerPage}` : itemsPerPage1;
-        queryParams += identifiant ? `&identifiant=${identifiant}` : null;
-        queryParams += nom ? `&nom=${nom}` : null;
-        queryParams += site_internet ? `&site_internet=${site_internet}` : null;
-        queryParams += e_mail ? `&e_mail=${e_mail}` : null;
-        queryParams += sous_categorie ? `&sous_categorie=${sous_categorie}` : null;
+        queryParams += identifiant ? `&identifiant=${identifiant}` : "";
+        queryParams += nom ? `&nom=${nom}` : "";
+        queryParams += site_internet ? `&site_internet=${site_internet}` : "";
+        queryParams += e_mail ? `&e_mail=${e_mail}` : "";
+        queryParams += sous_categorie ? `&sous_categorie=${sous_categorie}` : "";
 
         const previousUrl = pageId > 1 ? `${baseUri}?pageId=${pageId - 1}${queryParams}` : null;
         const nextUrl = paginationData.hasMore ? `${baseUri}?pageId=${pageId + 1}${queryParams}` : null;
