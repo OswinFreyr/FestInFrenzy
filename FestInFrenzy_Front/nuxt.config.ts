@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  extends: ['@nuxt/ui-pro'],
   modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
   googleFonts: {
     families : {

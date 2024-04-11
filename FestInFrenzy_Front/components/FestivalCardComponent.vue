@@ -1,33 +1,59 @@
+<template>
+  <UPricingCard
+    :title="festival.nom"
+    :description="discipline.nom"
+    icon="i-simple-icons-tailwindcss"
+    :to="{ name: 'festival', params: { id: festival.id } }"
+    target="_blank"
+    highlight
+    :badge="{ label: 'Date' }"
+    :button="{ label: 'En savoir plus' }"
+    :features="['Endroit', 'Portée', 'Plus de valeurs...']"
+    orientation="horizontal"
+    align="bottom"
+    style="padding: 30px;"
+  />
+</template>
+
 <script setup>
 const props = defineProps({
   festival: Object,
 });
 
-let disciplineId = ref("");
 let discipline = ref({});
+
 onMounted(async () => {
-  disciplineId.value = props.festival.disciplineId;
   const disciplineApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/disciplines/${disciplineId.value}`
+    `http://10.3.211.68:2000/api/v1/disciplines/${props.festival.disciplineId}`
   );
   discipline.value = await disciplineApi.json();
 });
 </script>
 
-<template>
-  <div
-    class="card card-side bg-base-100 shadow-xl w-[500px]"
-    style="display: flex; flex-direction: row"
-  >
-    <figure>
-      <img src="https://picsum.photos/200/300" alt="Photo aléatoire" />
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title">{{ festival.nom }}</h2>
-      <p>{{ discipline.nom }}</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary" style="background-color: purple; border: purple;">En savoir plus</button>
-      </div>
-    </div>
-  </div>
-</template>
+<style scoped>
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: #000;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-actions {
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+</style>

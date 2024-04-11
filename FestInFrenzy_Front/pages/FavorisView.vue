@@ -1,5 +1,5 @@
 <script setup>
-// import { favoriteFestivals } from '~/utils/favorites.js';
+import { favoriteFestivals } from '~/utils/favorites.js';
 </script>
 
 <template>
