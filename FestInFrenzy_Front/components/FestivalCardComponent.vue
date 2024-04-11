@@ -7,7 +7,7 @@
     target="_blank"
     highlight
     :badge="{ label: 'Date' }"
-    :button="{ label: 'En savoir plus', onClick: redirectToFestival }"    :features="[region.nom, festival.identifiant]"
+    :button="{ label: 'En savoir plus', onClick: redirectToFestival }"    :features="[region.nom]"
     orientation="horizontal"
     align="bottom"
     style="padding: 30px"
