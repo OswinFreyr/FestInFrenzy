@@ -26,7 +26,7 @@
       <FestivalsSection v-if="!isLoading">
         <section>
           <div class="enTete">
-            <div class="relative pl-8 text-primary font-bold titreSection" >
+            <div class="relative pl-8 text-primary font-bold titreSection">
               Nos recommandations
             </div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
@@ -38,7 +38,7 @@
               </template>
             </UButton>
           </div>
-          <CarouselComponent :festivalsList="randomFestivals" />
+          <CarouselComponent :festivalsList="randomFestivalsRecommandations" />
         </section>
         <section>
           <div class="enTete">
@@ -58,7 +58,7 @@
         </section>
         <div class="background-photo"></div>
 
-        <section style="margin-top: 40px;">
+        <section style="margin-top: 40px">
           <div class="enTete">
             <div class="relative pl-8 text-primary font-bold titreSection">
               Spectacles vivants
@@ -78,7 +78,9 @@
         </section>
         <section>
           <div class="enTete">
-            <div class="relative pl-8 text-primary font-bold titreSection">Cinéma</div>
+            <div class="relative pl-8 text-primary font-bold titreSection">
+              Cinéma
+            </div>
             <UButton label="Voir plus" color="gray" class="voirPlus">
               <template #trailing>
                 <UIcon
@@ -88,7 +90,7 @@
               </template>
             </UButton>
           </div>
-          <CarouselComponent :festivalsList="disciplineCinemaFestivalsList" />
+          <CarouselComponent :festivalsList="randomFestivalsCinema" />
         </section>
       </FestivalsSection>
       <div v-else>
@@ -102,14 +104,15 @@
 <script setup>
 import Header from "../components/HeaderComponent.vue";
 import Footer from "../components/FooterComponent.vue";
-import {getRandomFestivals} from "../utils/randomFestivals"
+import { getRandomFestivals } from "../utils/randomFestivals";
 const runtimeConfig = useRuntimeConfig();
 
 let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
 let isLoading = ref(true);
-let randomFestivals = ref([])
+let randomFestivalsRecommandations = ref([]);
+let randomFestivalsCinema = ref([]);
 let festivalsUrl = "";
 let disciplineUrl = "";
 
@@ -138,8 +141,17 @@ onMounted(async () => {
 
   isLoading.value = false;
   // randoms festivals pour "Nos recommandations"
-  let randomIndexes = getRandomFestivals(festivalsList.value);
-  randomFestivals = randomIndexes.map(index => festivalsList.value[index]);
+  let randomIndexesRecommandations = getRandomFestivals(festivalsList.value);
+  randomFestivalsRecommandations.value = randomIndexesRecommandations.map(
+    (index) => festivalsList.value[index]
+  );
+  // randoms festivals cinéma
+  let randomIndexesCinema = getRandomFestivals(
+    disciplineCinemaFestivalsList.value
+  );
+  randomFestivalsCinema.value = randomIndexesCinema.map(
+    (index) => disciplineCinemaFestivalsList.value[index]
+  );
 });
 </script>
 
