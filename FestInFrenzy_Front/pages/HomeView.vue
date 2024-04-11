@@ -7,26 +7,36 @@ const runtimeConfig = useRuntimeConfig()
 let festivalsList = ref([]);
 let disciplineSpectacleDeRueFestivalsList = ref([]);
 let disciplineCinemaFestivalsList = ref([]);
+
 let festivalsUrl = ""
 
 
 onMounted(async () => {
-    festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals"
+  // tous les festivals
+  const festivalsApi = await fetch(festivalsUrl);
+  festivalsList.value = await festivalsApi.json();
+  // festivalsList.value = festivalsList.value.festivals;
 
-    // tous les festivals
-    const festivalsApi = await fetch(festivalsUrl);
-    festivalsList.value = await festivalsApi.json();
-    // festivalsList.value = festivalsList.value.festivals;  
-  
-    // festivals spectacles de rue
-    const disciplineSpectacleDeRueFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/3');
-    disciplineSpectacleDeRueFestivalsList.value = await disciplineSpectacleDeRueFestivalsListApi.json();
-    disciplineSpectacleDeRueFestivalsList.value = disciplineSpectacleDeRueFestivalsList.value.festivals;
-  
-    // festivals cinéma
-    const disciplineCinemaFestivalsListApi = await fetch('http://10.3.211.68:2000/api/v1/disciplines/9');
-    disciplineCinemaFestivalsList.value = await disciplineCinemaFestivalsListApi.json();
-    disciplineCinemaFestivalsList.value = disciplineCinemaFestivalsList.value.festivals;
+  // festivals spectacles de rue
+  const disciplineSpectacleDeRueFestivalsListApi = await fetch(
+    "http://10.3.211.68:2000/api/v1/disciplines/3"
+  );
+  disciplineSpectacleDeRueFestivalsList.value =
+    await disciplineSpectacleDeRueFestivalsListApi.json();
+  disciplineSpectacleDeRueFestivalsList.value =
+    disciplineSpectacleDeRueFestivalsList.value.festivals;
+  // console.log(disciplineSpectacleDeRueFestivalsList.value)
+
+  // festivals cinéma
+  const disciplineCinemaFestivalsListApi = await fetch(
+    "http://10.3.211.68:2000/api/v1/disciplines/9"
+  );
+  disciplineCinemaFestivalsList.value =
+    await disciplineCinemaFestivalsListApi.json();
+  disciplineCinemaFestivalsList.value =
+    disciplineCinemaFestivalsList.value.festivals;
+  // console.log(disciplineCinemaFestivalsList.value)
 });
 </script>
 
@@ -35,28 +45,30 @@ onMounted(async () => {
   <main class="main">
     <section>
       <div class="enTete">
-        <h2>Festivals du moment</h2>
+        <h2 class="categoryTitle">Nos recommandations</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent :festivalsList="festivalsList" />
     </section>
     <section>
       <div class="enTete">
-        <h2>Vos coups de coeur</h2>
+        <h2 class="categoryTitle">Vos coups de coeur</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent :festivalsList="festivalsList" />
     </section>
     <section>
       <div class="enTete">
-        <h2>Spectacles vivants</h2>
+        <h2 class="categoryTitle">Spectacles vivants</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
-      <CarouselComponent :festivalsList="disciplineSpectacleDeRueFestivalsList" />
+      <CarouselComponent
+        :festivalsList="disciplineSpectacleDeRueFestivalsList"
+      />
     </section>
     <section>
       <div class="enTete">
-        <h2>Cinéma</h2>
+        <h2 class="categoryTitle">Cinéma</h2>
         <button class="voirPlus">Voir plus</button>
       </div>
       <CarouselComponent :festivalsList="disciplineCinemaFestivalsList" />
@@ -88,4 +100,11 @@ section h2 {
 .voirPlus {
   margin-right: 50px;
 }
+
+.categoryTitle {
+  font-family: 'Victor Mono', monospace;
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
 </style>

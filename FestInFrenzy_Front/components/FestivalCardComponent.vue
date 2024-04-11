@@ -3,6 +3,10 @@ const props = defineProps({
   festival: Object,
 });
 
+function getRandomImageUrl() {
+  return `https://picsum.photos/200/300/?random=${Math.random()}`;
+}
+
 let disciplineId = ref("");
 let discipline = ref({});
 onMounted(async () => {
@@ -17,12 +21,12 @@ onMounted(async () => {
 <template>
   <div
     class="card card-side bg-base-100 shadow-xl w-[500px]"
-    style="display: flex; flex-direction: row"
+    style="display: flex; flex-direction: row;"
   >
     <figure>
-      <img src="https://picsum.photos/200/300" alt="Photo aléatoire" />
+     <img :src="getRandomImageUrl()" alt="Photo aléatoire"/> 
     </figure>
-    <div class="card-body">
+    <div class="card-body" style="width: 200px; height: 300px;">
       <h2 class="card-title">{{ festival.nom }}</h2>
       <p>{{ discipline.nom }}</p>
       <div class="card-actions justify-end">

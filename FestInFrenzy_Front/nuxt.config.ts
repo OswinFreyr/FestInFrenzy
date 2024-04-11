@@ -8,21 +8,22 @@ export default defineNuxtConfig({
       apiUrl: '',
     }
   },
-  css: ['~/assets/css/main.css'],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
-  modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
-  // googleFonts: {
-  //   families : {
-  //     'Major Mono Display' : true
+  // css: [],
+  // postcss: {
+  //   plugins: {
+  //     autoprefixer: {},
   //   },
-  //   download : false,
-  //   fontsDir: 'assets/fonts'
-
-  // }
+  // },
+  modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
+  googleFonts: {
+    families: {
+      'Victor Mono': {
+        wght: 400,
+      },
+    },
+    download: false,
+    fontsDir: 'assets/fonts'
+  }
+  
 })
 
