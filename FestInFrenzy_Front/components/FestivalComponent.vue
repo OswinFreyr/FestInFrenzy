@@ -48,9 +48,7 @@ onMounted(async () => {
       <li>
         <a href="{{ festival.site_internet }}" target="_blank"> Site Web</a>
       </li>
-      <li>
-        {{festival.e_mail}}
-      </li>
+      <li v-html="festival.e_mail"></li>
       <li>{{ festival.sous_categorie }}</li>
       <li>{{ region.nom }}, {{ commune.nom }}</li>
     </ul>
