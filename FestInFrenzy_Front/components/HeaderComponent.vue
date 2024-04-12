@@ -20,7 +20,7 @@
           <NuxtLink to="/">Accueil</NuxtLink>
         </li>
         <li class="nav-item">
-  <NuxtLink to="/annuaire">Événements</NuxtLink>
+  <NuxtLink to="/annuaire">Annuaire</NuxtLink>
         </li>
         <li class="nav-item">
           <NuxtLink to="favoris">Favoris</NuxtLink>
