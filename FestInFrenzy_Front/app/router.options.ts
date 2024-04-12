@@ -17,11 +17,10 @@ export default <RouterConfig> {
       path: '/favoris',
       component: () => import('../pages/FavorisView.vue').then(r => r.default || r)
     },
-    // Nouvelle route pour la page des événements
     {
-      name: 'events', // Nom de la route
-      path: '/events', // URI de la route
-      component: () => import('../pages/EventsView.vue').then(r => r.default || r) // Composant correspondant à la page des événements
+      name: 'annuaire', 
+      path: '/annuaire', 
+      component: () => import('../pages/EventsView.vue').then(r => r.default || r) 
     }
   ],
 }
