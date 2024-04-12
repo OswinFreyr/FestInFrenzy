@@ -219,4 +219,11 @@ section h2 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); 
 }
+Header { 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
+}
 </style>
