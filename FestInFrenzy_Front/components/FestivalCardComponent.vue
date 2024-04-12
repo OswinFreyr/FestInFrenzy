@@ -1,33 +1,101 @@
+<template>
+  <UPricingCard
+    :title="festival.nom"
+    :description="discipline.nom"
+    icon="i-simple-icons-tailwindcss"
+    :to="{ name: 'festival', params: { id: festivalId } }"
+    target="_blank"
+    highlight
+    :badge="{ label: 'Date' }"
+    :button="{
+      label: '',
+      icon: 'i-heroicons-arrow-right-20-solid',
+      onClick: redirectToFestival,
+    }"
+    :features="[region.nom]"
+    orientation="horizontal"
+    align="bottom"
+    style="padding: 30px"
+  >
+    <template v-slot:footer>
+      <button
+        @click="toggleFavoriteFestival(festivalId)"
+        class="flex items-center justify-center space-x-1"
+      >
+        <i class="i-heroicons-star-solid text-yellow-500"></i>
+        <span>Ajouter aux favoris</span>
+      </button>
+    </template>
+  </UPricingCard>
+</template>
+
 <script setup>
+import { useRouter } from "vue-router";
+import { toggleFavoriteFestival } from "../utils/favorites";
+
+const runtimeConfig = useRuntimeConfig();
+
+const router = useRouter();
+
 const props = defineProps({
   festival: Object,
+  festivalId: Number,
 });
 
-let disciplineId = ref("");
 let discipline = ref({});
+let region = ref({});
+
+let disciplinesUrl = "";
+let regionsUrl = "";
+
+const redirectToFestival = () => {
+  router.push({ name: "festival", params: { id: props.festivalId } });
+};
+
 onMounted(async () => {
-  disciplineId.value = props.festival.disciplineId;
+  disciplinesUrl = runtimeConfig.public.apiUrl + "disciplines";
+  regionsUrl = runtimeConfig.public.apiUrl + "regions";
+
+  // récupération discipline
   const disciplineApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/disciplines/${disciplineId.value}`
+    `${disciplinesUrl}/${props.festival.disciplineId}`
   );
   discipline.value = await disciplineApi.json();
+
+  // récupération région
+  const regionApi = await fetch(`${regionsUrl}/${props.festival.regionId}`);
+
+  region.value = await regionApi.json();
+  region.value.nom = region.value.nom
+    ? region.value.nom
+    : "Région non renseignée.";
 });
 </script>
 
-<template>
-  <div
-    class="card card-side bg-base-100 shadow-xl w-[500px]"
-    style="display: flex; flex-direction: row"
-  >
-    <figure>
-      <img src="https://picsum.photos/200/300" alt="Photo aléatoire" />
-    </figure>
-    <div class="card-body">
-      <h2 class="card-title">{{ festival.nom }}</h2>
-      <p>{{ discipline.nom }}</p>
-      <div class="card-actions justify-end">
-        <button class="btn btn-primary" style="background-color: purple; border: purple;">En savoir plus</button>
-      </div>
-    </div>
-  </div>
-</template>
+<style scoped>
+.card {
+  background-color: white;
+  border-radius: 0.5rem;
+  color: #000;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-actions {
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+</style>

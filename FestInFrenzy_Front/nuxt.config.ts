@@ -1,28 +1,34 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 
-export default defineNuxtConfig({
-  devtools: { enabled: true },
+
+export default {
+  // Configuration de développement des outils
+  // devtools: { enabled: true },
+  ssr: false,
   runtimeConfig: {
-    MapBoxKey: process.env.MAP_BOX_KEY,
-    ApiUrl: process.env.API_URL,
     public: {
+      mapBoxKey: '',
+      apiUrl: '',
     }
   },
-  css: ['~/assets/css/main.css'],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
+  extends: ['@nuxt/ui-pro'],
+  modules: [
+    '@nuxt/ui','@nuxtjs/google-fonts',
+    'nuxt-mapbox'
+  ],
+  mapbox: {
+    accessToken: process.env.MAPBOX_KEY
   },
-  modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
   googleFonts: {
-    families : {
-      'Major Mono Display' : true
+    families: {
+      'Victor Mono': {
+        wght: 400,
+      },
     },
-    download : false,
+    download: false,
     fontsDir: 'assets/fonts'
+  },
 
-  }
-})
-
+  head: {
+    title: 'FestInFrenzy', 
+  },
+}

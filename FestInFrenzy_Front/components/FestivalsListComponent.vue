@@ -29,25 +29,39 @@ const filterFestivals = () => {
       return match;
     });
   } else {
+    console.log(props.festivalsList, "+ liste");
     return props.festivalsList;
   }
 };
 
 console.log("festivalsList avant appel filtre")
-console.log(festivalsList)
 const filteredFestivals = filterFestivals();
 console.log("filteredFestivals")
 console.log(filteredFestivals);
 </script>
 
 <template>
-  <div>
-    <ul class="festivalsList">
-      <li v-for="festival in filteredFestivals" :key="festival.id">
+  <div class="festivals-container">
+    <ul class="festivalsList flex flex-wrap justify-center">
+      <li v-for="festival in filteredFestivals" :key="festival.id" class="festival-item w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-4 mb-8">
         <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
-          <festivalCardComponent :festival="festival" />
+          <FestivalCardComponent :festival="festival"/>
         </NuxtLink>
       </li>
     </ul>
   </div>
 </template>
+
+<style scoped>
+.festivals-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.festival-item {
+  width: calc(50% - 60px); /* 50% of container width minus padding */
+  padding: 30px;
+  box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+</style>

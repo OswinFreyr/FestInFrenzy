@@ -16,7 +16,11 @@ export default <RouterConfig> {
       name: 'favoris',
       path: '/favoris',
       component: () => import('../pages/FavorisView.vue').then(r => r.default || r)
+    },
+    {
+      name: 'annuaire', 
+      path: '/annuaire', 
+      component: () => import('../pages/EventsView.vue').then(r => r.default || r) 
     }
   ],
 }
-

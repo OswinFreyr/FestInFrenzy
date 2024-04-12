@@ -6,15 +6,6 @@ const props = defineProps({
 });
 
 
-// ! Exemple de props pour les filtres : !
-//  filters: {
-//     discipline: 'Musique', // exemple de filtre par discipline dominante
-//     region: 'Île-de-France', // exemple de filtre par région
-//     commune: 'Paris', // exemple de filtre par commune
-//     envergure: 'Intercommunal', // exemple de filtre par envergure
-//     period: 'Juillet' // exemple de filtre par période
-//  }
-
 const filterFestivals = () => {
   const { festivalsList, filters } = props;
   if (filters) {
@@ -54,10 +45,6 @@ const filterFestivals = () => {
   }
 };
 
-// const filteredFestivals = filterFestivals();
-// console.log("filteredFestivals");
-// console.log(filteredFestivals);
-
 watchEffect(() => {
   filterFestivals();
 });
@@ -68,16 +55,15 @@ watchEffect(() => {
     <UCarousel
       v-slot="{ item }"
       :items="festivalsList"
-      :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3' }"
+      :ui="{ item: 'basis-full md:basis-1/2 lg:basis-1/3',    
+      indicators: {
+        wrapper: 'relative bottom-0 mt-2'
+      }
+      }"
       indicators
       class="rounded-lg overflow-hidden"
     >
-      <NuxtLink
-        :to="{ name: 'festival', params: { id: item.id } }"
-        :key="item.id"
-      >
-        <FestivalCardComponent :festival="item" />
-      </NuxtLink>
+        <FestivalCardComponent :festival="item" :festivalId="item.id"/>
     </UCarousel>
   </div>
 </template>
@@ -86,8 +72,6 @@ watchEffect(() => {
 .festivalsList {
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
   list-style: none;
 }
-
 </style>
