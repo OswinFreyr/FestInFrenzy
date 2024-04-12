@@ -1,6 +1,7 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 
-export default defineNuxtConfig({
+
+export default {
+  // Configuration de développement des outils
   // devtools: { enabled: true },
   ssr: false,
   runtimeConfig: {
@@ -25,7 +26,9 @@ export default defineNuxtConfig({
     },
     download: false,
     fontsDir: 'assets/fonts'
-  }
-  
-})
+  },
 
+  head: {
+    title: 'FestInFrenzy', 
+  },
+}

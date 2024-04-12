@@ -7,19 +7,33 @@
     target="_blank"
     highlight
     :badge="{ label: 'Date' }"
-    :button="{ label: '', icon: 'i-heroicons-arrow-right-20-solid', onClick: redirectToFestival }"
+    :button="{
+      label: '',
+      icon: 'i-heroicons-arrow-right-20-solid',
+      onClick: redirectToFestival,
+    }"
     :features="[region.nom]"
     orientation="horizontal"
     align="bottom"
     style="padding: 30px"
-  />
+  >
+    <template v-slot:footer>
+      <button
+        @click="toggleFavoriteFestival(festivalId)"
+        class="flex items-center justify-center space-x-1"
+      >
+        <i class="i-heroicons-star-solid text-yellow-500"></i>
+        <span>Ajouter aux favoris</span>
+      </button>
+    </template>
+  </UPricingCard>
 </template>
 
-
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
+import { toggleFavoriteFestival } from "../utils/favorites";
 
-const runtimeConfig = useRuntimeConfig()
+const runtimeConfig = useRuntimeConfig();
 
 const router = useRouter();
 

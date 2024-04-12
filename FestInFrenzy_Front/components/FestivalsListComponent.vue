@@ -42,9 +42,9 @@ console.log(filteredFestivals);
 
 <template>
   <div class="festivals-container">
-    <ul class="festivalsList basis-full md:basis-1/2 lg:basis-1/3" >
-      <li v-for="festival in filteredFestivals" :key="festival.id" class="festival-item" style="padding: 30px;">
-        <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }" style="padding: 30px;">
+    <ul class="festivalsList flex flex-wrap justify-center">
+      <li v-for="festival in filteredFestivals" :key="festival.id" class="festival-item w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-4 mb-8">
+        <NuxtLink :to="{ name: 'festival', params: { id: festival.id } }">
           <FestivalCardComponent :festival="festival"/>
         </NuxtLink>
       </li>

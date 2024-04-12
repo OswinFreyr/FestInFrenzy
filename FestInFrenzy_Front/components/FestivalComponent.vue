@@ -2,10 +2,8 @@
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 
-const runtimeConfig = useRuntimeConfig()
-
+const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
-
 let festival = ref({});
 let region = ref({});
 let commune = ref({});
