@@ -18,6 +18,7 @@
       align="bottom"
       style="padding: 30px"
     />
+    
     <div v-else>
       Données du festival non disponibles.
     </div>

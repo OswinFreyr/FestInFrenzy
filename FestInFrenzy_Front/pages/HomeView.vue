@@ -47,7 +47,7 @@
             <div class="relative pl-8 text-primary font-bold titreSection">
               Vos coups de coeur
             </div>
-            <NuxtLink :to="{ name: 'annuaire' }" class="voirPlus">
+            <NuxtLink :to="{ name: 'favoris' }" class="voirPlus">
               <UButton label="Voir plus" color="gray">
                 <template #trailing>
                   <UIcon
