@@ -18,9 +18,9 @@ export default <RouterConfig> {
       component: () => import('../pages/FavorisView.vue').then(r => r.default || r)
     },
     {
-      name: 'events', 
-      path: '/events', 
-      component: () => import('../pages/EventsView.vue').then(r => r.default || r)
+      name: 'annuaire', 
+      path: '/annuaire', 
+      component: () => import('../pages/EventsView.vue').then(r => r.default || r) 
     }
   ],
 }
