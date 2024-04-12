@@ -28,8 +28,6 @@ const props = defineProps({
   festivalId: Number,
 });
 
-const runtimeConfig = useRuntimeConfig();
-const router = useRouter();
 let discipline = ref({});
 let region = ref({});
 
