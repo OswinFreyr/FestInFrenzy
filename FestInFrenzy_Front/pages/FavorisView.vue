@@ -34,8 +34,12 @@ import { favoriteFestivals } from "~/utils/favorites.js";
 const favoriteIds = favoriteFestivals();
 const showListComponent = ref(false);
 let favoriteFestivalsDetails = ref([]);
+const runtimeConfig = useRuntimeConfig();
+let festivalsUrl = ""
 
 onMounted(async () => {
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
+
   await fetchFavoriteFestivalsDetails();
   showListComponent.value = true;
 });
@@ -44,7 +48,7 @@ const fetchFavoriteFestivalsDetails = async () => {
   const fetchedFestivals = [];
   for (const festivalId of favoriteIds) {
     const festivalApi = await fetch(
-      `http://10.3.211.68:2000/api/v1/festivals/${festivalId}`
+      `${festivalsUrl}/${festivalId}`
     );
     const festivalData = await festivalApi.json();
     fetchedFestivals.push(festivalData);

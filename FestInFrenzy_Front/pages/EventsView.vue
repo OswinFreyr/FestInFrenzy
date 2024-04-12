@@ -1,73 +1,76 @@
-<template>
-  <div v-if="isLoading">
-    Chargement en cours...
-  </div>
-  <div v-else>
-    <UPricingCard
-      v-if="festival && discipline && region"
-      :title="festival.nom"
-      :description="discipline.nom"
-      icon="i-simple-icons-tailwindcss"
-      :to="{ name: 'festival', params: { id: festivalId } }"
-      target="_blank"
-      highlight
-      :badge="{ label: 'Date' }"
-      :button="{ label: '', icon: 'i-heroicons-arrow-right-20-solid', onClick: redirectToFestival }"
-      :features="[region.nom]"
-      orientation="horizontal"
-      align="bottom"
-      style="padding: 30px"
-    />
-    <div v-else>
-      Données du festival non disponibles.
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { useRouter } from 'vue-router';
 import { ref, onMounted, defineProps } from 'vue';
 
 const router = useRouter();
+const runtimeConfig = useRuntimeConfig();
 
 const props = defineProps({
-  festival: Object,
-  festivalId: Number,
+  // festival: Object,
+  // festivalId: Number,
 });
 
 let isLoading = ref(true);
-let discipline = ref({});
-let region = ref({});
+let festivalObject = ref([])
+let festivalsList = ref([])
+
+let limitedFestivalsUrl = ref("")
+let fetchKey = 0
 
 const redirectToFestival = () => {
   router.push({ name: 'festival', params: { id: props.festivalId } });
 };
 
 onMounted(async () => {
+  limitedFestivalsUrl.value = runtimeConfig.public.apiUrl + "festivals/limit"
+  await fetchData();
+});
+
+async function fetchData() {
   try {
-    const disciplinesUrl = 'http://localhost:2000/api/v1/disciplines'; // Remplacer l'URL par votre propre URL
-    const regionsUrl = 'http://localhost:2000/api/v1/regions'; // Remplacer l'URL par votre propre URL
-
-    if (!props.festival || !props.festival.disciplineId || !props.festival.regionId) {
-      throw new Error('Données du festival incomplètes.');
-    }
-
-    // récupération discipline
-    const disciplineApi = await fetch(`${disciplinesUrl}/${props.festival.disciplineId}`);
-    discipline.value = await disciplineApi.json();
-
-    // récupération région
-    const regionApi = await fetch(`${regionsUrl}/${props.festival.regionId}`);
-    region.value = await regionApi.json();
-    region.value.nom = region.value.nom ? region.value.nom : 'Région non renseignée.';
-
+    
+    const festivalApi = await fetch(limitedFestivalsUrl.value);
+    festivalObject.value = await festivalApi.json()
+    festivalsList.value = festivalObject.value.data
+    console.log(festivalsList.value);
+    fetchKey++;
     isLoading.value = false;
   } catch (error) {
     console.error('Erreur lors de la récupération des données :', error);
   }
-});
+}
+
+async function previousPage() {
+  limitedFestivalsUrl.value = festivalObject.value.previousUrl
+  console.log(limitedFestivalsUrl.value);
+  await fetchData();
+}
+
+async function nextPage() {
+  limitedFestivalsUrl.value = festivalObject.value.nextUrl
+  console.log(limitedFestivalsUrl.value);
+  await fetchData();
+}
+
 </script>
 
-<style scoped>
-/* Vos styles CSS ici */
-</style>
+<template>
+  <div v-if="isLoading">
+    Chargement en cours...
+  </div>
+  <div v-else >
+    <FestivalsListComponent :festivalsList="festivalsList" :key="fetchKey" />
+  </div>
+  <ul>
+    <li v-if="festivalObject.previousUrl">
+      <button @click="previousPage">
+        Page précédente
+      </button>
+    </li>
+    <li v-if="festivalObject.nextUrl">
+      <button @click="nextPage">
+        Page suivante
+      </button>
+    </li>
+  </ul>
+</template>
