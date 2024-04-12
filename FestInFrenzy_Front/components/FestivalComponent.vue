@@ -97,7 +97,8 @@ onMounted(async () => {
           :options="{
             style: 'mapbox://styles/mapbox/outdoors-v12', // style URL
             center: [localisation.latitude, localisation.longitude], // starting position
-            zoom: 10 // starting zoom
+            zoom: 10, // starting zoom
+            boxzoom: true
           }"
         >
           <MapboxDefaultMarker 
@@ -106,9 +107,9 @@ onMounted(async () => {
             :lnglat="[localisation.latitude, localisation.longitude]"
           >
           </MapboxDefaultMarker>
-          <MapboxGeolocateControl 
-          position="left"
-          />
+          <MapboxGeolocateControl />
+          <MapboxFullscreenControl />
+          <MapboxNavigationControl />
         </MapboxMap>
       </div>
   </div>
