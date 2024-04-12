@@ -46,8 +46,8 @@ const redirectToFestival = () => {
 
 onMounted(async () => {
   try {
-    const disciplinesUrl = 'http://localhost:2000/api/v1/disciplines'; // Remplacer l'URL par votre propre URL
-    const regionsUrl = 'http://localhost:2000/api/v1/regions'; // Remplacer l'URL par votre propre URL
+    const disciplinesUrl = 'http://localhost:2000/api/v1/disciplines'; 
+    const regionsUrl = 'http://localhost:2000/api/v1/regions';
 
     if (!props.festival || !props.festival.disciplineId || !props.festival.regionId) {
       throw new Error('Données du festival incomplètes.');
