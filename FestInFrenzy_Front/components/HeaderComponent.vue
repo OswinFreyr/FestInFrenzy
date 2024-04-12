@@ -1,12 +1,18 @@
 <template>
   <header class="header">
     <div class="logo">
-      <img src="/public/logo.png" alt="FestInFrenzy Logo" style="width: 33%;">
+      <img src="/public/logo.png" alt="FestInFrenzy Logo" style="width: 33%" />
     </div>
     <form onsubmit="event.preventDefault();" role="search" class="search-form">
       <label for="search" class="sr-only">Search for stuff</label>
-      <input id="search" type="search" placeholder="Search..." autofocus required />
-      <button type="submit">Go</button>    
+      <input
+        id="search"
+        type="search"
+        placeholder="Search..."
+        autofocus
+        required
+      />
+      <button type="submit">Go</button>
     </form>
     <nav class="nav">
       <ul class="nav-list">
@@ -14,13 +20,10 @@
           <NuxtLink to="/">Accueil</NuxtLink>
         </li>
         <li class="nav-item">
-  <NuxtLink to="/events">Événements</NuxtLink>
+  <NuxtLink to="/annuaire">Annuaire</NuxtLink>
         </li>
         <li class="nav-item">
           <NuxtLink to="favoris">Favoris</NuxtLink>
-        </li>
-        <li class="nav-item">
-          <NuxtLink to="contact">Contact</NuxtLink>
         </li>
       </ul>
     </nav>
@@ -28,9 +31,8 @@
 </template>
 
 <script setup>
-  const submitForm = () => {
-    // Code pour soumettre le formulaire
-  };
+// const submitForm = () => {
+// };
 </script>
 
 <style scoped>
@@ -104,19 +106,19 @@
 }
 
 .nav-item a:hover {
-  color: #0e0024;
+  color: #b737d1;
 }
 </style>
 
 <style scoped>
 /* Variables */
 :root {
-  --rad: .7rem;
-  --dur: .3s;
+  --rad: 0.7rem;
+  --dur: 0.3s;
   --color-dark: #2f2f2f;
   --color-light: #fff;
   --color-brand: #57bd84;
-  --font-fam: 'Lato', sans-serif;
+  --font-fam: "Lato", sans-serif;
   --height: 5rem;
   --btn-width: 6rem;
   --bez: cubic-bezier(0, 0, 0.43, 1.49);
@@ -129,7 +131,8 @@ form {
   background: var(--color-brand);
   border-radius: var(--rad);
 }
-input, button {
+input,
+button {
   height: var(--height);
   font-family: var(--font-fam);
   border: 0;
