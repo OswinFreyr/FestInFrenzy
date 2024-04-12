@@ -142,7 +142,9 @@ onMounted(async () => {
             :lnglat="[localisation.latitude, localisation.longitude]"
           >
           </MapboxDefaultMarker>
-          <MapboxGeolocateControl position="left" />
+          <MapboxFullscreenControl />
+          <MapboxGeolocateControl />
+          <MapboxNavigationControl />
         </MapboxMap>
       </div>
     </ULandingSection>
