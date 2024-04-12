@@ -8,7 +8,6 @@
             <img
               src="https://cdn.discordapp.com/attachments/1227220701426090045/1227917582045151293/concert-8282026_1280.jpg?ex=662a265d&is=6617b15d&hm=33f8d58ed3c16a341cbc123f6c2518df543a59109586918f2836573f9258de7f&"
               class="w-full rounded-md shadow-x3 ring-1 ring-gray-300 dark:ring-gray-700"
-              style="; max-width: initial; margin: 0;"
             />
             <div class="overlay"></div>
           </div>
