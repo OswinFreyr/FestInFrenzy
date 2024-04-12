@@ -1,4 +1,5 @@
 export function toggleFavoriteFestival(festivalId) {
+    console.log("1");
     const favorites = JSON.parse(localStorage.getItem('favoriteFestivals')) || [];
   
     const index = favorites.indexOf(festivalId);
@@ -21,5 +22,6 @@ export function toggleFavoriteFestival(festivalId) {
   }
   
   export function favoriteFestivals() {
+    console.log("coucou");
     return JSON.parse(localStorage.getItem('favoriteFestivals')) || [];
 }

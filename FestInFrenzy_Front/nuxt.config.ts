@@ -3,10 +3,12 @@
 export default {
   // Configuration de développement des outils
   // devtools: { enabled: true },
-
-  publicRuntimeConfig: {
-    mapBoxKey: '',
-    apiUrl: '',
+  ssr: false,
+  runtimeConfig: {
+    public: {
+      mapBoxKey: '',
+      apiUrl: '',
+    }
   },
   extends: ['@nuxt/ui-pro'],
   modules: [
