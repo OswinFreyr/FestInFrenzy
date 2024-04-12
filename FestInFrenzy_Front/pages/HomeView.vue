@@ -189,15 +189,10 @@ section h2 {
   margin-right: 50px;
 }
 
-.categoryTitle {
-  font-family: "Victor Mono", monospace;
-  text-transform: uppercase;
-  font-size: 28px;
-}
-
 .titreSection {
   font-size: 28px;
   text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
 .background-photo {
