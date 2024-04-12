@@ -23,12 +23,11 @@
   </UPricingCard>
 </template>
 
-
 <script setup>
 import { useRouter } from 'vue-router';
 import { toggleFavoriteFestival, isFavorite } from '~/utils/favorites.js';
 
-const runtimeConfig = useRuntimeConfig()
+const runtimeConfig = useRuntimeConfig();
 
 const router = useRouter();
 

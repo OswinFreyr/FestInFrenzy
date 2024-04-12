@@ -29,14 +29,16 @@
             <div class="relative pl-8 text-primary font-bold titreSection">
               Nos recommandations
             </div>
-            <UButton label="Voir plus" color="gray" class="voirPlus">
-              <template #trailing>
-                <UIcon
-                  name="i-heroicons-arrow-right-20-solid"
-                  class="w-5 h-5"
-                />
-              </template>
-            </UButton>
+            <NuxtLink :to="{ name: 'annuaire' }" class="voirPlus">
+              <UButton label="Voir plus" color="gray">
+                <template #trailing>
+                  <UIcon
+                    name="i-heroicons-arrow-right-20-solid"
+                    class="w-5 h-5"
+                  />
+                </template>
+              </UButton>
+            </NuxtLink>
           </div>
           <CarouselComponent :festivalsList="randomFestivalsRecommandations" />
         </section>
@@ -45,14 +47,16 @@
             <div class="relative pl-8 text-primary font-bold titreSection">
               Vos coups de coeur
             </div>
-            <UButton label="Voir plus" color="gray" class="voirPlus">
-              <template #trailing>
-                <UIcon
-                  name="i-heroicons-arrow-right-20-solid"
-                  class="w-5 h-5"
-                />
-              </template>
-            </UButton>
+            <NuxtLink :to="{ name: 'annuaire' }" class="voirPlus">
+              <UButton label="Voir plus" color="gray">
+                <template #trailing>
+                  <UIcon
+                    name="i-heroicons-arrow-right-20-solid"
+                    class="w-5 h-5"
+                  />
+                </template>
+              </UButton>
+            </NuxtLink>
           </div>
           <CarouselComponent :festivalsList="festivalsList" />
         </section>
@@ -63,14 +67,16 @@
             <div class="relative pl-8 text-primary font-bold titreSection">
               Spectacles vivants
             </div>
-            <UButton label="Voir plus" color="gray" class="voirPlus">
-              <template #trailing>
-                <UIcon
-                  name="i-heroicons-arrow-right-20-solid"
-                  class="w-5 h-5"
-                />
-              </template>
-            </UButton>
+            <NuxtLink :to="{ name: 'annuaire' }" class="voirPlus">
+              <UButton label="Voir plus" color="gray">
+                <template #trailing>
+                  <UIcon
+                    name="i-heroicons-arrow-right-20-solid"
+                    class="w-5 h-5"
+                  />
+                </template>
+              </UButton>
+            </NuxtLink>
           </div>
           <CarouselComponent
             :festivalsList="disciplineSpectacleDeRueFestivalsList"
@@ -81,14 +87,16 @@
             <div class="relative pl-8 text-primary font-bold titreSection">
               Cinéma
             </div>
-            <UButton label="Voir plus" color="gray" class="voirPlus">
-              <template #trailing>
-                <UIcon
-                  name="i-heroicons-arrow-right-20-solid"
-                  class="w-5 h-5"
-                />
-              </template>
-            </UButton>
+            <NuxtLink :to="{ name: 'annuaire' }" class="voirPlus">
+              <UButton label="Voir plus" color="gray">
+                <template #trailing>
+                  <UIcon
+                    name="i-heroicons-arrow-right-20-solid"
+                    class="w-5 h-5"
+                  />
+                </template>
+              </UButton>
+            </NuxtLink>
           </div>
           <CarouselComponent :festivalsList="randomFestivalsCinema" />
         </section>
@@ -181,15 +189,11 @@ section h2 {
   margin-right: 50px;
 }
 
-.categoryTitle {
-  font-family: "Victor Mono", monospace;
-  text-transform: uppercase;
-  font-size: 28px;
-}
-
 .titreSection {
   font-size: 28px;
   text-transform: uppercase;
+  margin-bottom: 20px;
+  color : #b737d1
 }
 
 .background-photo {

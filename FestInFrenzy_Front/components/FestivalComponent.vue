@@ -1,38 +1,6 @@
-<template>
-  <div v-if="!isLoading">
-    <ul style="display: flex; flex-direction: column; align-items: center">
-      <li>
-        <h1>{{ festival.nom }}</h1>
-      </li>
-      <li><em>Identifiant :</em> {{ festival.identifiant }}</li>
-    </ul>
-    <ul>
-      <li>
-        <a :href="festival.site_internet" target="_blank"> Site Web</a>
-      </li>
-      <li v-html="festival.e_mail"></li>
-      <li>{{ festival.sous_categorie }}</li>
-      <li>{{ region.nom }}, {{ commune.nom }}</li>
-      <ul style="display: flex; flex-direction: row">
-        Période :&nbsp;
-        <li v-for="(mois, index) in festival.mois" :key="index">
-          {{ index !== 0 ? ", " : "" }}{{ mois.nom }}
-        </li>
-      </ul>
-    </ul>
-  </div>
-  <div v-else>
-    <p style="text-align: center">Chargement en cours...</p>
-  </div>
-</template>
-
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-
-const runtimeConfig = useRuntimeConfig()
-
-const route = useRoute();
 
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
@@ -127,7 +95,8 @@ onMounted(async () => {
           :options="{
             style: 'mapbox://styles/mapbox/outdoors-v12', // style URL
             center: [localisation.latitude, localisation.longitude], // starting position
-            zoom: 10 // starting zoom
+            zoom: 10, // starting zoom
+            boxzoom: true
           }"
         >
           <MapboxDefaultMarker 
@@ -136,9 +105,9 @@ onMounted(async () => {
             :lnglat="[localisation.latitude, localisation.longitude]"
           >
           </MapboxDefaultMarker>
-          <MapboxGeolocateControl 
-          position="left"
-          />
+          <MapboxGeolocateControl />
+          <MapboxFullscreenControl />
+          <MapboxNavigationControl />
         </MapboxMap>
       </div>
   </div>
