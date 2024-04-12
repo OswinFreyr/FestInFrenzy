@@ -1,3 +1,61 @@
+<script setup>
+import Header from "../components/HeaderComponent.vue";
+import Footer from "../components/FooterComponent.vue";
+import { getRandomFestivals } from "../utils/randomFestivals";
+
+const runtimeConfig = useRuntimeConfig();
+let festivalsList = ref([]);
+let disciplineSpectacleDeRueFestivalsList = ref([]);
+let disciplineCinemaFestivalsList = ref([]);
+let isLoading = ref(true);
+let randomFestivalsRecommandations = ref([]);
+let randomFestivalsCinema = ref([]);
+let festivalsUrl = "";
+let disciplineUrl = "";
+
+onMounted(async () => {
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
+  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines";
+
+  // tous les festivals
+  const festivalsApi = await fetch(festivalsUrl);
+  festivalsList.value = await festivalsApi.json();
+
+  // Festivals spectacles de rue
+  const disciplineSpectacleDeRueFestivalsListApi = await fetch(
+    disciplineUrl + "/3"
+  );
+  disciplineSpectacleDeRueFestivalsList.value =
+    await disciplineSpectacleDeRueFestivalsListApi.json();
+  disciplineSpectacleDeRueFestivalsList.value =
+    disciplineSpectacleDeRueFestivalsList.value.festivals;
+
+  // Festivals cinéma
+  const disciplineCinemaFestivalsListApi = await fetch(disciplineUrl + "/9");
+  disciplineCinemaFestivalsList.value =
+    await disciplineCinemaFestivalsListApi.json();
+  disciplineCinemaFestivalsList.value =
+    disciplineCinemaFestivalsList.value.festivals;
+
+  // randoms festivals pour "Nos recommandations"
+  let randomIndexesRecommandations = getRandomFestivals(festivalsList.value);
+  randomFestivalsRecommandations.value = randomIndexesRecommandations.map(
+    (index) => festivalsList.value[index]
+  );
+
+  // randoms festivals cinéma
+  let randomIndexesCinema = getRandomFestivals(
+    disciplineCinemaFestivalsList.value
+  );
+  randomFestivalsCinema.value = randomIndexesCinema.map(
+    (index) => disciplineCinemaFestivalsList.value[index]
+  );
+
+  isLoading.value = false;
+});
+</script>
+
+
 <template>
   <div>
     <Header />
@@ -6,8 +64,10 @@
         <div class="relative">
           <img
             src="https://cdn.discordapp.com/attachments/1227220701426090045/1227917582045151293/concert-8282026_1280.jpg?ex=662a265d&is=6617b15d&hm=33f8d58ed3c16a341cbc123f6c2518df543a59109586918f2836573f9258de7f&"
-            class="w-2/3 rounded-md shadow-x3 ring-1 ring-gray-300 dark:ring-gray-700"
+            class="w-full rounded-md shadow-x3 ring-1 ring-gray-300 dark:ring-gray-700"
+            style="max-width: initial; margin: 0;"
           />
+          <div class="overlay"></div>
           <div
             class="absolute inset-0 flex flex-col justify-center items-center text-center p-6"
           >
@@ -47,7 +107,7 @@
             <div class="relative pl-8 text-primary font-bold titreSection">
               Vos coups de coeur
             </div>
-            <NuxtLink :to="{ name: 'annuaire' }" class="voirPlus">
+            <NuxtLink :to="{ name: 'favoris' }" class="voirPlus">
               <UButton label="Voir plus" color="gray">
                 <template #trailing>
                   <UIcon
@@ -109,63 +169,6 @@
   </div>
 </template>
 
-<script setup>
-import Header from "../components/HeaderComponent.vue";
-import Footer from "../components/FooterComponent.vue";
-import { getRandomFestivals } from "../utils/randomFestivals";
-
-const runtimeConfig = useRuntimeConfig();
-let festivalsList = ref([]);
-let disciplineSpectacleDeRueFestivalsList = ref([]);
-let disciplineCinemaFestivalsList = ref([]);
-let isLoading = ref(true);
-let randomFestivalsRecommandations = ref([]);
-let randomFestivalsCinema = ref([]);
-let festivalsUrl = "";
-let disciplineUrl = "";
-
-onMounted(async () => {
-  festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
-  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines";
-
-  // tous les festivals
-  const festivalsApi = await fetch(festivalsUrl);
-  festivalsList.value = await festivalsApi.json();
-
-  // Festivals spectacles de rue
-  const disciplineSpectacleDeRueFestivalsListApi = await fetch(
-    disciplineUrl + "/3"
-  );
-  disciplineSpectacleDeRueFestivalsList.value =
-    await disciplineSpectacleDeRueFestivalsListApi.json();
-  disciplineSpectacleDeRueFestivalsList.value =
-    disciplineSpectacleDeRueFestivalsList.value.festivals;
-
-  // Festivals cinéma
-  const disciplineCinemaFestivalsListApi = await fetch(disciplineUrl + "/9");
-  disciplineCinemaFestivalsList.value =
-    await disciplineCinemaFestivalsListApi.json();
-  disciplineCinemaFestivalsList.value =
-    disciplineCinemaFestivalsList.value.festivals;
-
-  // randoms festivals pour "Nos recommandations"
-  let randomIndexesRecommandations = getRandomFestivals(festivalsList.value);
-  randomFestivalsRecommandations.value = randomIndexesRecommandations.map(
-    (index) => festivalsList.value[index]
-  );
-
-  // randoms festivals cinéma
-  let randomIndexesCinema = getRandomFestivals(
-    disciplineCinemaFestivalsList.value
-  );
-  randomFestivalsCinema.value = randomIndexesCinema.map(
-    (index) => disciplineCinemaFestivalsList.value[index]
-  );
-
-  isLoading.value = false;
-});
-</script>
-
 <style>
 .main {
   display: flex;
@@ -202,5 +205,18 @@ section h2 {
   background-position: center;
   height: 500px;
   background-attachment: fixed;
+}
+.image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 </style>

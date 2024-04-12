@@ -17,13 +17,13 @@
     <nav class="nav">
       <ul class="nav-list">
         <li class="nav-item">
-          <NuxtLink to="/">Accueil</NuxtLink>
+          <NuxtLink :to="{ name: 'home' }">Accueil</NuxtLink>
         </li>
         <li class="nav-item">
-  <NuxtLink to="/annuaire">Annuaire</NuxtLink>
+  <NuxtLink :to="{ name: 'annuaire' }">Annuaire</NuxtLink>
         </li>
         <li class="nav-item">
-          <NuxtLink to="favoris">Favoris</NuxtLink>
+          <NuxtLink :to="{ name: 'favoris' }">Favoris</NuxtLink>
         </li>
       </ul>
     </nav>

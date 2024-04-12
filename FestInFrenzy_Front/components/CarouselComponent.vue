@@ -63,7 +63,9 @@ watchEffect(() => {
       indicators
       class="rounded-lg overflow-hidden"
     >
-        <FestivalCardComponent :festival="item" :festivalId="item.id"/>
+    <div style="padding: 30px;">
+        <FestivalCardComponent :festival="item" :festivalId="item.id" />
+      </div>
     </UCarousel>
   </div>
 </template>
