@@ -6,11 +6,11 @@
     :to="{ name: 'festival', params: { id: festivalId } }"
     target="_blank"
     highlight
-    :button="{ label: '', icon: 'i-heroicons-arrow-right-20-solid', onClick: redirectToFestival }"
+    :button="{ label: '', icon: 'i-heroicons-arrow-right-20-solid', onClick: redirectToFestival, style: 'background-color: #b737d1' }"
     :features="[region.nom]"
     orientation="horizontal"
     align="bottom"
-    style="padding: 30px"
+    style="padding: 30px; --tw-ring-color: #b737d1;"
   >
   <template v-slot:footer>
       <button
