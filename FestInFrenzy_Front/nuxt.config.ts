@@ -10,13 +10,13 @@ export default defineNuxtConfig({
     }
   },
   extends: ['@nuxt/ui-pro'],
-  // css: [],
-  // postcss: {
-  //   plugins: {
-  //     autoprefixer: {},
-  //   },
-  // },
-  modules: ['@nuxt/ui','@nuxtjs/google-fonts'],
+  modules: [
+    '@nuxt/ui','@nuxtjs/google-fonts',
+    'nuxt-mapbox'
+  ],
+  mapbox: {
+    accessToken: process.env.MAPBOX_KEY
+  },
   googleFonts: {
     families: {
       'Victor Mono': {

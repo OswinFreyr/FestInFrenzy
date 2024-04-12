@@ -3,33 +3,54 @@
     :title="festival.nom"
     :description="discipline.nom"
     icon="i-simple-icons-tailwindcss"
-    :to="{ name: 'festival', params: { id: festival.id } }"
+    :to="{ name: 'festival', params: { id: festivalId } }"
     target="_blank"
     highlight
     :badge="{ label: 'Date' }"
-    :button="{ label: 'En savoir plus' }"
-    :features="[region.nom, 'Portée', 'Plus de valeurs...']"
+    :button="{ label: '', icon: 'i-heroicons-arrow-right-20-solid', onClick: redirectToFestival }"
+    :features="[region.nom]"
     orientation="horizontal"
     align="bottom"
     style="padding: 30px"
   />
 </template>
 
+
 <script setup>
+import { useRouter } from 'vue-router';
+
+const runtimeConfig = useRuntimeConfig()
+
+const router = useRouter();
+
 const props = defineProps({
   festival: Object,
+  festivalId: Number,
 });
 
 let discipline = ref({});
 let region = ref({});
+
+let disciplinesUrl = "";
+let regionsUrl = "";
+
+const redirectToFestival = () => {
+  router.push({ name: "festival", params: { id: props.festivalId } });
+};
+
 onMounted(async () => {
+  disciplinesUrl = runtimeConfig.public.apiUrl + "disciplines";
+  regionsUrl = runtimeConfig.public.apiUrl + "regions";
+
+  // récupération discipline
   const disciplineApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/disciplines/${props.festival.disciplineId}`
+    `${disciplinesUrl}/${props.festival.disciplineId}`
   );
   discipline.value = await disciplineApi.json();
-  const regionApi = await fetch(
-    `http://10.3.211.68:2000/api/v1/regions/${props.festival.regionId}`
-  );
+
+  // récupération région
+  const regionApi = await fetch(`${regionsUrl}/${props.festival.regionId}`);
+
   region.value = await regionApi.json();
   region.value.nom = region.value.nom
     ? region.value.nom

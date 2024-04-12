@@ -6,15 +6,6 @@ const props = defineProps({
 });
 
 
-// ! Exemple de props pour les filtres : !
-//  filters: {
-//     discipline: 'Musique', // exemple de filtre par discipline dominante
-//     region: 'Île-de-France', // exemple de filtre par région
-//     commune: 'Paris', // exemple de filtre par commune
-//     envergure: 'Intercommunal', // exemple de filtre par envergure
-//     period: 'Juillet' // exemple de filtre par période
-//  }
-
 const filterFestivals = () => {
   const { festivalsList, filters } = props;
   if (filters) {
@@ -72,13 +63,7 @@ watchEffect(() => {
       indicators
       class="rounded-lg overflow-hidden"
     >
-      <NuxtLink
-        :to="{ name: 'festival', params: { id: item.id } }"
-        :key="item.id"
-        style="padding: 30px;"
-      >
-        <FestivalCardComponent :festival="item" />
-      </NuxtLink>
+        <FestivalCardComponent :festival="item" :festivalId="item.id"/>
     </UCarousel>
   </div>
 </template>
@@ -89,5 +74,4 @@ watchEffect(() => {
   flex-direction: row;
   list-style: none;
 }
-
 </style>
