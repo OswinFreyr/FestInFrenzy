@@ -17,7 +17,11 @@
 
 
 <script setup>
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
+
+const runtimeConfig = useRuntimeConfig()
+
+const router = useRouter();
 
 const props = defineProps({
   festival: Object,
@@ -28,6 +32,7 @@ const runtimeConfig = useRuntimeConfig();
 const router = useRouter();
 let discipline = ref({});
 let region = ref({});
+
 let disciplinesUrl = "";
 let regionsUrl = "";
 
@@ -47,6 +52,7 @@ onMounted(async () => {
 
   // récupération région
   const regionApi = await fetch(`${regionsUrl}/${props.festival.regionId}`);
+
   region.value = await regionApi.json();
   region.value.nom = region.value.nom
     ? region.value.nom
