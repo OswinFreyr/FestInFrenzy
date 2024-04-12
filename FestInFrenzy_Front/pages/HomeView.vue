@@ -1,3 +1,61 @@
+<script setup>
+import Header from "../components/HeaderComponent.vue";
+import Footer from "../components/FooterComponent.vue";
+import { getRandomFestivals } from "../utils/randomFestivals";
+
+const runtimeConfig = useRuntimeConfig();
+let festivalsList = ref([]);
+let disciplineSpectacleDeRueFestivalsList = ref([]);
+let disciplineCinemaFestivalsList = ref([]);
+let isLoading = ref(true);
+let randomFestivalsRecommandations = ref([]);
+let randomFestivalsCinema = ref([]);
+let festivalsUrl = "";
+let disciplineUrl = "";
+
+onMounted(async () => {
+  festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
+  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines";
+
+  // tous les festivals
+  const festivalsApi = await fetch(festivalsUrl);
+  festivalsList.value = await festivalsApi.json();
+
+  // Festivals spectacles de rue
+  const disciplineSpectacleDeRueFestivalsListApi = await fetch(
+    disciplineUrl + "/3"
+  );
+  disciplineSpectacleDeRueFestivalsList.value =
+    await disciplineSpectacleDeRueFestivalsListApi.json();
+  disciplineSpectacleDeRueFestivalsList.value =
+    disciplineSpectacleDeRueFestivalsList.value.festivals;
+
+  // Festivals cinéma
+  const disciplineCinemaFestivalsListApi = await fetch(disciplineUrl + "/9");
+  disciplineCinemaFestivalsList.value =
+    await disciplineCinemaFestivalsListApi.json();
+  disciplineCinemaFestivalsList.value =
+    disciplineCinemaFestivalsList.value.festivals;
+
+  // randoms festivals pour "Nos recommandations"
+  let randomIndexesRecommandations = getRandomFestivals(festivalsList.value);
+  randomFestivalsRecommandations.value = randomIndexesRecommandations.map(
+    (index) => festivalsList.value[index]
+  );
+
+  // randoms festivals cinéma
+  let randomIndexesCinema = getRandomFestivals(
+    disciplineCinemaFestivalsList.value
+  );
+  randomFestivalsCinema.value = randomIndexesCinema.map(
+    (index) => disciplineCinemaFestivalsList.value[index]
+  );
+
+  isLoading.value = false;
+});
+</script>
+
+
 <template>
   <div>
     <Header />
@@ -108,63 +166,6 @@
     <Footer />
   </div>
 </template>
-
-<script setup>
-import Header from "../components/HeaderComponent.vue";
-import Footer from "../components/FooterComponent.vue";
-import { getRandomFestivals } from "../utils/randomFestivals";
-
-const runtimeConfig = useRuntimeConfig();
-let festivalsList = ref([]);
-let disciplineSpectacleDeRueFestivalsList = ref([]);
-let disciplineCinemaFestivalsList = ref([]);
-let isLoading = ref(true);
-let randomFestivalsRecommandations = ref([]);
-let randomFestivalsCinema = ref([]);
-let festivalsUrl = "";
-let disciplineUrl = "";
-
-onMounted(async () => {
-  festivalsUrl = runtimeConfig.public.apiUrl + "festivals";
-  disciplineUrl = runtimeConfig.public.apiUrl + "disciplines";
-
-  // tous les festivals
-  const festivalsApi = await fetch(festivalsUrl);
-  festivalsList.value = await festivalsApi.json();
-
-  // Festivals spectacles de rue
-  const disciplineSpectacleDeRueFestivalsListApi = await fetch(
-    disciplineUrl + "/3"
-  );
-  disciplineSpectacleDeRueFestivalsList.value =
-    await disciplineSpectacleDeRueFestivalsListApi.json();
-  disciplineSpectacleDeRueFestivalsList.value =
-    disciplineSpectacleDeRueFestivalsList.value.festivals;
-
-  // Festivals cinéma
-  const disciplineCinemaFestivalsListApi = await fetch(disciplineUrl + "/9");
-  disciplineCinemaFestivalsList.value =
-    await disciplineCinemaFestivalsListApi.json();
-  disciplineCinemaFestivalsList.value =
-    disciplineCinemaFestivalsList.value.festivals;
-
-  // randoms festivals pour "Nos recommandations"
-  let randomIndexesRecommandations = getRandomFestivals(festivalsList.value);
-  randomFestivalsRecommandations.value = randomIndexesRecommandations.map(
-    (index) => festivalsList.value[index]
-  );
-
-  // randoms festivals cinéma
-  let randomIndexesCinema = getRandomFestivals(
-    disciplineCinemaFestivalsList.value
-  );
-  randomFestivalsCinema.value = randomIndexesCinema.map(
-    (index) => disciplineCinemaFestivalsList.value[index]
-  );
-
-  isLoading.value = false;
-});
-</script>
 
 <style>
 .main {
