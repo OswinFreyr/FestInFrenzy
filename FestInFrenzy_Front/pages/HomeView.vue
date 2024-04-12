@@ -193,6 +193,7 @@ section h2 {
   font-size: 28px;
   text-transform: uppercase;
   margin-bottom: 20px;
+  color : #b737d1
 }
 
 .background-photo {
