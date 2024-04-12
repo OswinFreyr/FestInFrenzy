@@ -1,6 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { ref, onMounted, defineProps } from 'vue';
+import Header from "../components/HeaderComponent.vue";
+import Footer from "../components/FooterComponent.vue";
 
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
@@ -55,22 +57,78 @@ async function nextPage() {
 </script>
 
 <template>
+      <Header />
   <div v-if="isLoading">
     Chargement en cours...
   </div>
   <div v-else >
+    <div class="button-container">
+    <ul class="button-list" style="margin-top: 30px;">
+      <li v-if="festivalObject.previousUrl">
+        <UButton
+          icon="i-heroicons-arrow-left"
+          size="sm"
+          color="purple"
+          variant="solid"
+          label="Page précédente"
+          :trailing="false"
+          @click="previousPage"
+        />
+      </li>
+      <li v-if="festivalObject.nextUrl">
+        <UButton
+          icon="i-heroicons-arrow-right"
+          size="sm"
+          color="purple"
+          variant="solid"
+          label="Page suivante"
+          :trailing="false"
+          @click="nextPage"
+        />
+      </li>
+    </ul>
+  </div>
     <FestivalsListComponent :festivalsList="festivalsList" :key="fetchKey" />
   </div>
-  <ul>
-    <li v-if="festivalObject.previousUrl">
-      <button @click="previousPage">
-        Page précédente
-      </button>
-    </li>
-    <li v-if="festivalObject.nextUrl">
-      <button @click="nextPage">
-        Page suivante
-      </button>
-    </li>
-  </ul>
+  <div class="button-container">
+    <ul class="button-list">
+      <li v-if="festivalObject.previousUrl">
+        <UButton
+          icon="i-heroicons-arrow-left"
+          size="sm"
+          color="purple"
+          variant="solid"
+          label="Page précédente"
+          :trailing="false"
+          @click="previousPage"
+        />
+      </li>
+      <li v-if="festivalObject.nextUrl">
+        <UButton
+          icon="i-heroicons-arrow-right"
+          size="sm"
+          color="purple"
+          variant="solid"
+          label="Page suivante"
+          :trailing="false"
+          @click="nextPage"
+        />
+      </li>
+    </ul>
+  </div>
+  <Footer />
+
 </template>
+
+<style scoped>
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.button-list {
+  display: flex;
+  gap: 20px; 
+}
+</style>
