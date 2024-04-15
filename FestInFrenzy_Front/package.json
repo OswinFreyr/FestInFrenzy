@@ -10,9 +10,21 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@nuxt/ui": "^2.15.1",
+    "@nuxt/ui-pro": "^1.1.0",
     "nuxt": "^3.11.2",
     "sequelize": "^6.37.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "autoprefixer": "^10.4.19",
+    "css": "^3.0.0",
+    "mapbox-gl": "^3.3.0",
+    "nuxt-mapbox": "^1.5.9",
+    "post": "^0.0.1",
+    "tailwindcss": "^3.4.3"
   }
 }

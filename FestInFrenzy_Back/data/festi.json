@@ -1,0 +1,226 @@
+[
+    {
+        "nom_du_festival": "Avoine Zone Groove",
+        "envergure_territoriale": "Intercommunale",
+        "region_principale_de_deroulement": "Centre-Val de Loire",
+        "commune_principale_de_deroulement": "Avoine",
+        "code_postal_de_la_commune_principale_de_deroulement": 37420,
+        "site_internet_du_festival": "www.avoinezonegroove.fr",
+        "adresse_e_mail": null,
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_37011_550",
+        "geocodage_xy": {
+            "lon": "47.2237767737",
+            "lat": "0.18754463005"
+        },
+        "periode_mois": [
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre"
+        ],
+        "sous_categorie": "Jazz Blues 07- Musiques actuelles sans distinction"
+    },
+    {
+        "nom_du_festival": "Festival des correspondances des arts",
+        "envergure_territoriale": "Départementale",
+        "region_principale_de_deroulement": "Hauts-de-France",
+        "commune_principale_de_deroulement": "Braine",
+        "code_postal_de_la_commune_principale_de_deroulement": 2220,
+        "site_internet_du_festival": "https://braine.fr/",
+        "adresse_e_mail": "correspondance-des-arts@braine.fr",
+        "discipline_dominante": "Pluridisciplinaire",
+        "identifiant": "FEST_02110_1021",
+        "geocodage_xy": {
+            "lon": "49.3484719318",
+            "lat": "3.53596629744"
+        },
+        "periode_mois": [
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ],
+        "sous_categorie": null
+    },
+    {
+        "nom_du_festival": "Soirées d'automne - festival itinérant",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Provence-Alpes-Côte d'Azur",
+        "commune_principale_de_deroulement": "Carpentras",
+        "code_postal_de_la_commune_principale_de_deroulement": 84203,
+        "site_internet_du_festival": "www.soireesdautomne.com",
+        "adresse_e_mail": "info@passagersduzinc.com",
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_84031_1284",
+        "geocodage_xy": {
+            "lon": "44.0593802565",
+            "lat": "5.06134844776"
+        },
+        "periode_mois": [
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ],
+        "sous_categorie": "09- Pluridisciplinaire"
+    },
+    {
+        "nom_du_festival": "Macki Music Festival",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Île-de-France",
+        "commune_principale_de_deroulement": "Carrières-sur-Seine",
+        "code_postal_de_la_commune_principale_de_deroulement": 78420,
+        "site_internet_du_festival": "https://www.mackimusicfestival.fr/",
+        "adresse_e_mail": "mackimusicfestival@gmail.com",
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_78124_1288",
+        "geocodage_xy": {
+            "lon": "48.9119335064",
+            "lat": "2.17838235323"
+        },
+        "periode_mois": [
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre"
+        ],
+        "sous_categorie": "Musiques du monde Musiques traditionnelles RnB Musiques électroniques techno Hip-hop rap slam Pop rock Jazz blues Musique contemporaine 02- Musiques amplifiées ou électroniques"
+    },
+    {
+        "nom_du_festival": "Play mobile",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Île-de-France",
+        "commune_principale_de_deroulement": "Chatillon",
+        "code_postal_de_la_commune_principale_de_deroulement": 92320,
+        "site_internet_du_festival": "http://www.theatreachatillon.com/play-mobile.php",
+        "adresse_e_mail": null,
+        "discipline_dominante": "Spectacle vivant",
+        "identifiant": "FEST_92020_1579",
+        "geocodage_xy": {
+            "lon": "48.8034091756",
+            "lat": "2.28799131883"
+        },
+        "periode_mois": [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin"
+        ],
+        "sous_categorie": null
+    },
+    {
+        "nom_du_festival": "Voyages en guitare",
+        "envergure_territoriale": "Intercommunale",
+        "region_principale_de_deroulement": "Centre-Val de Loire",
+        "commune_principale_de_deroulement": "Chinon",
+        "code_postal_de_la_commune_principale_de_deroulement": 37500,
+        "site_internet_du_festival": "http://www.ville-chinon.com/vie-culturelle/festivals/voyages-en-guitare/",
+        "adresse_e_mail": null,
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_37072_1628",
+        "geocodage_xy": {
+            "lon": "47.1723001595",
+            "lat": "0.245084664558"
+        },
+        "periode_mois": [
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Décembre"
+        ],
+        "sous_categorie": "Musique pluridisciplinaire 04- Musiques traditionnelles et du monde"
+    },
+    {
+        "nom_du_festival": "Jazz en Ville",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Île-de-France",
+        "commune_principale_de_deroulement": "Conflans-Sainte-Honorine",
+        "code_postal_de_la_commune_principale_de_deroulement": 78700,
+        "site_internet_du_festival": "www.jazzauconfluent.fr",
+        "adresse_e_mail": null,
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_78172_1796",
+        "geocodage_xy": {
+            "lon": "49.0001007823",
+            "lat": "2.0990719052"
+        },
+        "periode_mois": [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin"
+        ],
+        "sous_categorie": "Musiques actuelles 03- Jazz blues et musiques improvisées"
+    },
+    {
+        "nom_du_festival": "Semaine musicale d'Éourres",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Provence-Alpes-Côte d'Azur",
+        "commune_principale_de_deroulement": "Éourres",
+        "code_postal_de_la_commune_principale_de_deroulement": 5300,
+        "site_internet_du_festival": "https://www.semainemusicale.com/",
+        "adresse_e_mail": "helene.richaud@yahoo.fr",
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_05047_2109",
+        "geocodage_xy": {
+            "lon": "44.2138373403",
+            "lat": "5.72894553965"
+        },
+        "periode_mois": [
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre"
+        ],
+        "sous_categorie": "Folk-rock ; jazz ; jazz manouche ; musique classique ; musique savante ; musiques des balkans ; musiques du monde ; musiques traditionnelles ; musiques traditionnelles amérique latine ; musiques traditionnelles europe centrale et est ; swing/middle jazz"
+    },
+    {
+        "nom_du_festival": "Festisud",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Provence-Alpes-Côte d'Azur",
+        "commune_principale_de_deroulement": "Eyguieres",
+        "code_postal_de_la_commune_principale_de_deroulement": 13430,
+        "site_internet_du_festival": "eyguieres.org",
+        "adresse_e_mail": "communication@mairie-eyguieres.fr",
+        "discipline_dominante": "Musique",
+        "identifiant": "FEST_13035_2168",
+        "geocodage_xy": {
+            "lon": "43.7025562953",
+            "lat": "5.01557705248"
+        },
+        "periode_mois": [
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre"
+        ],
+        "sous_categorie": null
+    },
+    {
+        "nom_du_festival": "Les nuits d'Antibes",
+        "envergure_territoriale": null,
+        "region_principale_de_deroulement": "Provence-Alpes-Côte d'Azur",
+        "commune_principale_de_deroulement": "Juan-Les-Pins",
+        "code_postal_de_la_commune_principale_de_deroulement": 6160,
+        "site_internet_du_festival": "www.antibesjuanlespins.com",
+        "adresse_e_mail": "accueil@antibesjuanlespins.com",
+        "discipline_dominante": "Spectacle vivant",
+        "identifiant": "FEST_06004_2683",
+        "geocodage_xy": {
+            "lon": "43.587465146",
+            "lat": "7.10635418256"
+        },
+        "periode_mois": [
+            "Juin",
+            "Juillet",
+            "Août",
+            "Septembre"
+        ],
+        "sous_categorie": null
+    }
+]
